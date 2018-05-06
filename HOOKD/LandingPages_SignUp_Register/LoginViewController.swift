@@ -47,6 +47,16 @@ class LoginViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func forgotUser() {
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "forgotuser") as! ForgotUsername
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func forgotPass() {
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "forgotpass") as! ForgotPassword
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
 
     /*
     // MARK: - Navigation

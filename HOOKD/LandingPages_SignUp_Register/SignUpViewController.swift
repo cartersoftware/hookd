@@ -43,7 +43,7 @@ class SignUpViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        //self.navigationController?.setNavigationBarHidden(false, animated: false)
 
     }
 
@@ -54,7 +54,7 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func maleSelected() {
-        maleButton.backgroundColor = UIColor.black
+        maleButton.backgroundColor = UIColor.darkGray
         maleButton.setTitleColor(UIColor.white, for: .normal)
         femaleButton.backgroundColor = UIColor.white
         femaleButton.setTitleColor(UIColor.lightGray, for: .normal)
@@ -62,7 +62,7 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func femaleSelected() {
-        femaleButton.backgroundColor = UIColor.black
+        femaleButton.backgroundColor = UIColor.darkGray
         femaleButton.setTitleColor(UIColor.white, for: .normal)
         maleButton.backgroundColor = UIColor.white
         maleButton.setTitleColor(UIColor.lightGray, for: .normal)
@@ -87,6 +87,10 @@ class SignUpViewController: UIViewController {
             }
         }
     
+    }
+    
+    @IBAction func goBack() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     /*

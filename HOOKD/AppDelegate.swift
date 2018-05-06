@@ -9,7 +9,7 @@
 import UIKit
 
 let HOOKDAPI      = "http://hookd.info/API/V1/"
-let HOOKDRED      = UIColor(red: 247/255, green: 103/255, blue: 103/255, alpha: 1)
+let HOOKDRED      = UIColor(red: 239.0/255.0, green: 107.0/255.0, blue: 87.0/255.0, alpha: 1.0)
 let OURERROR      = "Something went wrong on our side.";
 
 @UIApplicationMain
