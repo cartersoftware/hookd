@@ -22,6 +22,9 @@
 		DBE7CA47209D921600F28396 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE7CA46209D921600F28396 /* UserManager.swift */; };
 		DBE7CA4A209D979100F28396 /* HookdHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE7CA49209D979100F28396 /* HookdHome.swift */; };
 		DBE7CA4C209E8C7700F28396 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE7CA4B209E8C7700F28396 /* LoginViewController.swift */; };
+		DBE7CA4F209EB27E00F28396 /* AlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE7CA4E209EB27E00F28396 /* AlertsViewController.swift */; };
+		DBE7CA51209EB29600F28396 /* MyLikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE7CA50209EB29600F28396 /* MyLikesViewController.swift */; };
+		DBE7CA53209EC3CE00F28396 /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE7CA52209EC3CE00F28396 /* MatchCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +71,9 @@
 		DBE7CA46209D921600F28396 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		DBE7CA49209D979100F28396 /* HookdHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HookdHome.swift; sourceTree = "<group>"; };
 		DBE7CA4B209E8C7700F28396 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		DBE7CA4E209EB27E00F28396 /* AlertsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewController.swift; sourceTree = "<group>"; };
+		DBE7CA50209EB29600F28396 /* MyLikesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLikesViewController.swift; sourceTree = "<group>"; };
+		DBE7CA52209EC3CE00F28396 /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
 		F5931457126148C8ED0887A3 /* Pods-HOOKDTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HOOKDTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HOOKDTests/Pods-HOOKDTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -151,6 +157,9 @@
 				DBE7CA48209D921D00F28396 /* Managers */,
 				DBCD0987209D50C6007DE92E /* AppDelegate.swift */,
 				DBE7CA49209D979100F28396 /* HookdHome.swift */,
+				DBE7CA4E209EB27E00F28396 /* AlertsViewController.swift */,
+				DBE7CA50209EB29600F28396 /* MyLikesViewController.swift */,
+				DBE7CA52209EC3CE00F28396 /* MatchCell.swift */,
 				DBCD09B7209D7A06007DE92E /* Assets.xcassets */,
 				DBCD098B209D50C6007DE92E /* Main.storyboard */,
 				DBCD0990209D50C6007DE92E /* LaunchScreen.storyboard */,
@@ -494,8 +503,11 @@
 				DBCD09B6209D728D007DE92E /* SignUpViewController.swift in Sources */,
 				DBE7CA4A209D979100F28396 /* HookdHome.swift in Sources */,
 				DBCD098A209D50C6007DE92E /* LandingPage.swift in Sources */,
+				DBE7CA53209EC3CE00F28396 /* MatchCell.swift in Sources */,
 				DBE7CA47209D921600F28396 /* UserManager.swift in Sources */,
 				DBCD0988209D50C6007DE92E /* AppDelegate.swift in Sources */,
+				DBE7CA4F209EB27E00F28396 /* AlertsViewController.swift in Sources */,
+				DBE7CA51209EB29600F28396 /* MyLikesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

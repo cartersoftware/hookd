@@ -17,14 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         application.statusBarStyle = .lightContent // .default
         let navbarFont             = UIFont(name: "System", size: 17) ?? UIFont.systemFont(ofSize: 17)
         
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: navbarFont, NSAttributedStringKey.foregroundColor:UIColor.white]
-        
+            
         return true
     }
 

@@ -1,9 +1,9 @@
 //
-//  UserManager.swift
-//  BerkshireBuzz
+//  AlertManager
+//  HOOKD
 //
-//  Created by Vladimir Bahtjak on 11/10/17.
-//  Copyright © 2017 BerkshireBuzz. All rights reserved.
+//  Created by Zachary Carter on 05/05/18.
+//  Copyright © 2017 Hookd. All rights reserved.
 //
 
 import UIKit
