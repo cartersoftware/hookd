@@ -8,6 +8,10 @@
 
 import UIKit
 
+let HOOKDAPI      = "http://hookd.info/API/V1/"
+let HOOKDRED      = UIColor(red: 247/255, green: 103/255, blue: 103/255, alpha: 1)
+let OURERROR      = "Something went wrong on our side.";
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,6 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        application.statusBarStyle = .lightContent // .default
+        let navbarFont             = UIFont(name: "System", size: 17) ?? UIFont.systemFont(ofSize: 17)
+        
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: navbarFont, NSAttributedStringKey.foregroundColor:UIColor.white]
+        
         return true
     }
 

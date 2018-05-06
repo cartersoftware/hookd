@@ -20,7 +20,7 @@ class AlertManager: NSObject {
     
     func showError(title:String, subTitle:String, buttonTitle:String) {
         let alert                  = CDAlertView(title: title, message: subTitle, type: .error)
-        alert.circleFillColor      = UIColor.init(red: 247/255, green: 130/255, blue: 130/255, alpha: 1.0)
+        alert.circleFillColor      = HOOKDRED
         let doneAction             = CDAlertViewAction(title: buttonTitle)
         doneAction.buttonTextColor = UIColor.black
         

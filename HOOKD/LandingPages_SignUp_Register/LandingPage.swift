@@ -102,19 +102,15 @@ class LandingPage: UIViewController, UIPageViewControllerDelegate, UIPageViewCon
     
     @IBAction func signUp() {
         
-        /*let transition:CATransition = CATransition()
-        transition.duration         = 0.5
-        transition.timingFunction   = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type             = kCATransitionPush
-        transition.subtype          = kCATransitionFromTop
-        self.navigationController?.view.layer.add(transition, forKey: kCATransition)
-
-        */
-        
-
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "signUp") as! SignUpViewController
         self.navigationController?.pushViewController(vc, animated: true)
-
+        
+    }
+    
+    @IBAction func signIn() {
+        
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "login") as! LoginViewController
+        self.navigationController?.pushViewController(vc, animated: true)
         
     }
 
