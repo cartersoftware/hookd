@@ -27,7 +27,20 @@ class ForgotUsername: UIViewController {
     }
     
     @IBAction func forgotUsername() {
-        
+        UserManager.sharedManager.forgotUsername(emailAddress.text!) { (done, errormsg) in
+            if(done) {
+                DispatchQueue.main.async {
+                    AlertManager.sharedManager.showSuccess(title: "Success", subTitle: "An email is on the way. Please check it for your username!", buttonTitle: "Okay")
+                    
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+            else {
+                DispatchQueue.main.async {
+                    AlertManager.sharedManager.showError(title: "Whoops", subTitle: errormsg, buttonTitle: "Okay")
+                }
+            }
+        }
     }
     
     @IBAction func goBack() {

@@ -27,6 +27,16 @@ class AlertManager: NSObject {
         alert.add(action: doneAction)
         alert.show()
     }
+    
+    func showSuccess(title:String, subTitle:String, buttonTitle:String) {
+        let alert                  = CDAlertView(title: title, message: subTitle, type: .success)
+        alert.circleFillColor      = UIColor.darkGray
+        let doneAction             = CDAlertViewAction(title: buttonTitle)
+        doneAction.buttonTextColor = UIColor.black
+        
+        alert.add(action: doneAction)
+        alert.show()
+    }
 }
 
 

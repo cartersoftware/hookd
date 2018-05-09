@@ -28,6 +28,20 @@ class ForgotPassword: UIViewController {
     
     @IBAction func forgotPassword() {
         
+        UserManager.sharedManager.forgotPassword(emailAddress.text!) { (done, errormsg) in
+            if(done) {
+                DispatchQueue.main.async {
+                    AlertManager.sharedManager.showSuccess(title: "Success", subTitle: "An email is on the way. Please check it to reset your password!", buttonTitle: "Okay")
+                    
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+            else {
+                DispatchQueue.main.async {
+                    AlertManager.sharedManager.showError(title: "Whoops", subTitle: errormsg, buttonTitle: "Okay")
+                }
+            }
+        }
     }
     
     @IBAction func goBack() {
