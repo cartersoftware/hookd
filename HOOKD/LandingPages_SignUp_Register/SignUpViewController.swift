@@ -21,6 +21,8 @@ class SignUpViewController: UIViewController {
     
     var gender        = ""
     var seekinggender = ""
+    var seekinggendermale   = "false"
+    var seekinggenderfemale = "false"
 
     override func viewDidLoad() {
         
@@ -74,20 +76,48 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func maleSeekingSelected() {
-        seekingMaleButton.backgroundColor = UIColor.darkGray
-        seekingMaleButton.setTitleColor(UIColor.white, for: .normal)
-        seekingFemaleButton.backgroundColor = UIColor.white
-        seekingFemaleButton.setTitleColor(UIColor.lightGray, for: .normal)
-        seekinggender = "Male"
+        
+        if(seekinggendermale == "false") {
+            seekinggendermale = "true"
+            seekingMaleButton.backgroundColor = UIColor.darkGray
+            seekingMaleButton.setTitleColor(UIColor.white, for: .normal)
+        }
+        else {
+            seekinggendermale = "false"
+            seekingMaleButton.backgroundColor = UIColor.white
+            seekingMaleButton.setTitleColor(UIColor.lightGray, for: .normal)
+        }
+        
+        handleSeekingVariable()
     }
     
     @IBAction func femaleSeekingSelected() {
-        seekingFemaleButton.backgroundColor = UIColor.darkGray
-        seekingFemaleButton.setTitleColor(UIColor.white, for: .normal)
-        seekingMaleButton.backgroundColor = UIColor.white
-        seekingMaleButton.setTitleColor(UIColor.lightGray, for: .normal)
-        seekinggender = "Female"
+        if(seekinggenderfemale == "false") {
+            seekinggenderfemale = "true"
+            seekingFemaleButton.backgroundColor = UIColor.darkGray
+            seekingFemaleButton.setTitleColor(UIColor.white, for: .normal)
+        }
+        else {
+            seekinggenderfemale = "false"
+            seekingFemaleButton.backgroundColor = UIColor.white
+            seekingFemaleButton.setTitleColor(UIColor.lightGray, for: .normal)
+        }
         
+        handleSeekingVariable()
+    }
+    
+    func handleSeekingVariable() {
+        if(seekinggendermale == "true" && seekinggenderfemale == "true") {
+            seekinggender = "Both"
+        }
+        else {
+            if(seekinggendermale == "true") {
+                seekinggender = "Male"
+            }
+            else {
+                seekinggender = "Female"
+            }
+        }
     }
     
     @IBAction func signUp() {
