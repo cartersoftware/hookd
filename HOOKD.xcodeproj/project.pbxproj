@@ -10,6 +10,7 @@
 		1049ADEA55A1F2FDA02669EE /* Pods_HOOKD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B9B49A5BC633915382015BE /* Pods_HOOKD.framework */; };
 		282BFDE2F4634B9A237306B8 /* Pods_HOOKDTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77289D2C5718A37BEC463A58 /* Pods_HOOKDTests.framework */; };
 		9C8A145A2AAC455C407299FB /* Pods_HOOKDUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 664ADD72BB9EFD3A03B221A0 /* Pods_HOOKDUITests.framework */; };
+		DB857F6720A3E22C00532F3A /* TermsPrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB857F6620A3E22C00532F3A /* TermsPrivacyViewController.swift */; };
 		DBCD0988209D50C6007DE92E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCD0987209D50C6007DE92E /* AppDelegate.swift */; };
 		DBCD098A209D50C6007DE92E /* LandingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCD0989209D50C6007DE92E /* LandingPage.swift */; };
 		DBCD098D209D50C6007DE92E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBCD098B209D50C6007DE92E /* Main.storyboard */; };
@@ -55,6 +56,7 @@
 		84EA20DFEF8ACCFFD6816F41 /* Pods-HOOKDUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HOOKDUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HOOKDUITests/Pods-HOOKDUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		91829BD037C84B2B8F3B3CD0 /* Pods-HOOKDUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HOOKDUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HOOKDUITests/Pods-HOOKDUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D2A1A5BC360D8D41D82D9380 /* Pods-HOOKDTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HOOKDTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HOOKDTests/Pods-HOOKDTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DB857F6620A3E22C00532F3A /* TermsPrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsPrivacyViewController.swift; sourceTree = "<group>"; };
 		DBCD0984209D50C6007DE92E /* HOOKD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HOOKD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBCD0987209D50C6007DE92E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBCD0989209D50C6007DE92E /* LandingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPage.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 		DBE7CA4D209E8C7E00F28396 /* LandingPages_SignUp_Register */ = {
 			isa = PBXGroup;
 			children = (
+				DB857F6620A3E22C00532F3A /* TermsPrivacyViewController.swift */,
 				DBCD0989209D50C6007DE92E /* LandingPage.swift */,
 				DBCD09B5209D728D007DE92E /* SignUpViewController.swift */,
 				DBE7CA4B209E8C7700F28396 /* LoginViewController.swift */,
@@ -512,6 +515,7 @@
 				DBE7CA53209EC3CE00F28396 /* MatchCell.swift in Sources */,
 				DBE7CA47209D921600F28396 /* UserManager.swift in Sources */,
 				DBCD0988209D50C6007DE92E /* AppDelegate.swift in Sources */,
+				DB857F6720A3E22C00532F3A /* TermsPrivacyViewController.swift in Sources */,
 				DBE7CA57209ED2B100F28396 /* ForgotUsername.swift in Sources */,
 				DBE7CA4F209EB27E00F28396 /* AlertsViewController.swift in Sources */,
 				DBE7CA51209EB29600F28396 /* MyLikesViewController.swift in Sources */,

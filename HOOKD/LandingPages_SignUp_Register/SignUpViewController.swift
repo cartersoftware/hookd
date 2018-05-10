@@ -16,8 +16,11 @@ class SignUpViewController: UIViewController {
     @IBOutlet var emailAddressTextField : UITextField!
     @IBOutlet var usernameTextField : UITextField!
     @IBOutlet var passwordTextField : UITextField!
-
-    var gender = ""
+    @IBOutlet var seekingFemaleButton : UIButton!
+    @IBOutlet var seekingMaleButton : UIButton!
+    
+    var gender        = ""
+    var seekinggender = ""
 
     override func viewDidLoad() {
         
@@ -70,9 +73,26 @@ class SignUpViewController: UIViewController {
         
     }
     
+    @IBAction func maleSeekingSelected() {
+        seekingMaleButton.backgroundColor = UIColor.darkGray
+        seekingMaleButton.setTitleColor(UIColor.white, for: .normal)
+        seekingFemaleButton.backgroundColor = UIColor.white
+        seekingFemaleButton.setTitleColor(UIColor.lightGray, for: .normal)
+        seekinggender = "Male"
+    }
+    
+    @IBAction func femaleSeekingSelected() {
+        seekingFemaleButton.backgroundColor = UIColor.darkGray
+        seekingFemaleButton.setTitleColor(UIColor.white, for: .normal)
+        seekingMaleButton.backgroundColor = UIColor.white
+        seekingMaleButton.setTitleColor(UIColor.lightGray, for: .normal)
+        seekinggender = "Female"
+        
+    }
+    
     @IBAction func signUp() {
         
-        UserManager.sharedManager.registerUser(usernameTextField.text!, password: passwordTextField.text!, email: emailAddressTextField.text!, gender: gender) { (done, errormsg) in
+        UserManager.sharedManager.registerUser(usernameTextField.text!, password: passwordTextField.text!, email: emailAddressTextField.text!, gender: gender, seeking:seekinggender) { (done, errormsg) in
             if(done) {
                 DispatchQueue.main.async {
                     let vc = self.storyboard!.instantiateViewController(withIdentifier: "hookdhome") as! HookdHome

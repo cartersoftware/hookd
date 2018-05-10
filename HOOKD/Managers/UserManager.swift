@@ -13,6 +13,7 @@ class UserManager : NSObject {
     var username = "";
     var email    = "";
     var gender   = "";
+    var isViewingTerms = true
     
     class var sharedManager : UserManager {
         struct _Singleton {
@@ -21,19 +22,20 @@ class UserManager : NSObject {
         return _Singleton.instance
     }
     
-    func registerUser(_ username:String,password:String,email:String,gender:String, completionBlock:@escaping (_ success:Bool, _ errormsg:String) -> Void) {
+    func registerUser(_ username:String,password:String,email:String,gender:String,seeking:String, completionBlock:@escaping (_ success:Bool, _ errormsg:String) -> Void) {
         
         var urlRequest = URLRequest(url: URL(string:HOOKDAPI + "RegisterUser.php")!)
         
         urlRequest.httpMethod = "POST"
         urlRequest.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        urlRequest.httpBody = "username=\(username)&password=\(password)&email=\(email)&gender=\(gender)".data(using: .utf8)
+        urlRequest.httpBody = "username=\(username)&password=\(password)&email=\(email)&gender=\(gender)&seeking=\(seeking)".data(using: .utf8)
         
         URLSession.shared.dataTask(with: urlRequest) { (serverData, serverResponse, serverError) in
             
             if serverError == nil && serverData != nil {
                 
-               // let data = String.init(data: serverData!, encoding: .utf8)
+               let data = String.init(data: serverData!, encoding: .utf8)
+                print(data)
                 
                 if let jsonObject = try? JSONSerialization.jsonObject(with: serverData!, options: []) as? NSDictionary {
                     

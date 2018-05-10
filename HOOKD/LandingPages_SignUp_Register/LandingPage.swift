@@ -113,6 +113,18 @@ class LandingPage: UIViewController, UIPageViewControllerDelegate, UIPageViewCon
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
+    
+    @IBAction func gotoTerms() {
+        UserManager.sharedManager.isViewingTerms = true
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "terms") as! TermsPrivacyViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func gotoPrivacy() {
+        UserManager.sharedManager.isViewingTerms = false
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "terms") as! TermsPrivacyViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 
 
 }
