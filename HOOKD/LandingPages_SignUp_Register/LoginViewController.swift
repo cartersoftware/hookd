@@ -28,6 +28,15 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func login() {
+        
+        DispatchQueue.main.async {
+
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "profilePic") as! ProfilePictureWizard
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+        }
+        
+        /*
         UserManager.sharedManager.authenticateUser(username.text!, password: password.text!) { (done, errormsg) in
             if(done) {
                 DispatchQueue.main.async {
@@ -40,7 +49,7 @@ class LoginViewController: UIViewController {
                     AlertManager.sharedManager.showError(title: "Oops", subTitle: errormsg, buttonTitle: "Okay")
                 }
             }
-        }
+        }*/
     }
     
     @IBAction func goBack() {
