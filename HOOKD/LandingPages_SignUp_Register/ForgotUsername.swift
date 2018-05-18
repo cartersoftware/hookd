@@ -18,7 +18,7 @@ class ForgotUsername: UIViewController {
 
         // Do any additional setup after loading the view.
         getUsername.layer.cornerRadius = 5.0
-
+        getUsername.backgroundColor = HOOKDRED
     }
 
     override func didReceiveMemoryWarning() {

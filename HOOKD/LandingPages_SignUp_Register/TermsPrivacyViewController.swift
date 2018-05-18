@@ -11,6 +11,7 @@ import UIKit
 class TermsPrivacyViewController: UIViewController, UIWebViewDelegate {
 
     @IBOutlet var webView : UIWebView!
+    @IBOutlet var navBar : UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

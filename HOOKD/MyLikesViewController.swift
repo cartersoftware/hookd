@@ -11,12 +11,17 @@ import UIKit
 class MyLikesViewController: UIViewController {
 
     @IBOutlet var profileImage : UIImageView!
-
+    @IBOutlet var navBar : UIView!
+    @IBOutlet var actionButton : UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         profileImage.image = profileImage.image!.withRenderingMode(.alwaysTemplate)
         profileImage.tintColor = UIColor.white
+        
+        navBar.backgroundColor = HOOKDNAV
+        actionButton.backgroundColor = HOOKDRED
         // Do any additional setup after loading the view.
     }
 

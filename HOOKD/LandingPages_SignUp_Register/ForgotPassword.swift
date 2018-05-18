@@ -18,7 +18,7 @@ class ForgotPassword: UIViewController {
         
         // Do any additional setup after loading the view.
         getPassword.layer.cornerRadius = 5.0
-        
+        getPassword.backgroundColor = HOOKDRED
     }
     
     override func didReceiveMemoryWarning() {

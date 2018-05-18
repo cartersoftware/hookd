@@ -34,6 +34,9 @@ class ProfilePictureWizard: UIViewController, UIImagePickerControllerDelegate, U
         savedImageView.layer.borderColor   = UIColor.white.cgColor
         savedImageView.layer.cornerRadius  = savedImageView.frame.height/2
         savedImageView.clipsToBounds       = true
+        
+        uploadProfilePicButton.backgroundColor = HOOKDRED
+        saveAndContinue.backgroundColor = HOOKDRED
     }
 
     override func didReceiveMemoryWarning() {
@@ -191,8 +194,8 @@ class ProfilePictureWizard: UIViewController, UIImagePickerControllerDelegate, U
             } ?? []
     }
     
-    @IBAction func continueToVideo() {
-        let vc = self.storyboard!.instantiateViewController(withIdentifier: "video") as! VideoViewController
+    @IBAction func continueToVideo() { 
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "profile") as! ProfileViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

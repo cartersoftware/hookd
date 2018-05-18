@@ -14,7 +14,7 @@ class LandingPage: UIViewController, UIPageViewControllerDelegate, UIPageViewCon
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var signUpButton: UIButton!
     @IBOutlet var signInButton: UIButton!
-    
+
     var pageContainer: UIPageViewController!
     var pages = [UIViewController]()
     var currentIndex: Int?
@@ -29,6 +29,8 @@ class LandingPage: UIViewController, UIPageViewControllerDelegate, UIPageViewCon
         
         signUpButton.layer.cornerRadius = 5.0
         signInButton.layer.cornerRadius = 5.0
+        
+        signUpButton.backgroundColor = HOOKDRED
     }
     
     override func viewWillAppear(_ animated: Bool) {

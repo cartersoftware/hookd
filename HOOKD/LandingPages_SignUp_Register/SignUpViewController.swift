@@ -42,7 +42,7 @@ class SignUpViewController: UIViewController {
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: navbarFont, NSAttributedStringKey.foregroundColor:UIColor.white]
 
         signUpButton.layer.cornerRadius = 5.0
-        
+        signUpButton.backgroundColor = HOOKDRED
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -125,7 +125,7 @@ class SignUpViewController: UIViewController {
         UserManager.sharedManager.registerUser(usernameTextField.text!, password: passwordTextField.text!, email: emailAddressTextField.text!, gender: gender, seeking:seekinggender) { (done, errormsg) in
             if(done) {
                 DispatchQueue.main.async {
-                    let vc = self.storyboard!.instantiateViewController(withIdentifier: "profilePic") as! ProfilePictureWizard
+                    let vc = self.storyboard!.instantiateViewController(withIdentifier: "video") as! VideoViewController
                     self.navigationController?.pushViewController(vc, animated: true)
                     UserManager.sharedManager.username = self.usernameTextField.text!
                 }

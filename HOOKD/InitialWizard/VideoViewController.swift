@@ -10,10 +10,13 @@ import UIKit
 
 class VideoViewController: UIViewController {
 
+    @IBOutlet var continueButton : UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        continueButton.backgroundColor = HOOKDRED
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,7 +25,7 @@ class VideoViewController: UIViewController {
     }
     
     @IBAction func gotoProfile() {
-        let vc = self.storyboard!.instantiateViewController(withIdentifier: "profile") as! ProfileViewController
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "profilePic") as! ProfilePictureWizard
         self.navigationController?.pushViewController(vc, animated: true)
         UserManager.sharedManager.visitedFromHome = false
     }

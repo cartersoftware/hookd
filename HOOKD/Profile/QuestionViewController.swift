@@ -13,6 +13,7 @@ class QuestionViewController: UIViewController, UITextViewDelegate {
     @IBOutlet var question : UILabel!
     @IBOutlet var answer : UITextView!
     @IBOutlet var doneButton : UIButton!
+    @IBOutlet var navBar : UIView!
     
     var questionKey = ""
     
@@ -20,10 +21,12 @@ class QuestionViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(QuestionViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(QuestionViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         answer.delegate = self
+        
+        doneButton.backgroundColor = HOOKDRED
+        navBar.backgroundColor     = HOOKDNAV
+        
         // Do any additional setup after loading the view.
     }
     
@@ -62,17 +65,6 @@ class QuestionViewController: UIViewController, UITextViewDelegate {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            doneButton.frame.origin.y -= keyboardSize.height
-        }
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            doneButton.frame.origin.y += keyboardSize.height
-        }
-    }
     
     /*
      // MARK: - Navigation

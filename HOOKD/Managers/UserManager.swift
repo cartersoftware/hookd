@@ -42,7 +42,7 @@ class UserManager : NSObject {
             let dict2: [String: String] = ["question_key":"marriage", "question":"Do you want to get married?", "answer":"na", "type":"yesnomaybe"]
             let dict5: [String: String] = ["question_key":"alcohol", "question":"Do you drink?", "answer":"na", "type":"yesno"]
             let dict4: [String: String] = ["question_key":"smoker", "question":"Do you smoke?", "answer":"na", "type":"yesno"]
-            let dict6: [String: String] = ["question_key":"pets", "question":"Do you have any pets?", "answer":"na", "type":"freetext"]
+            let dict6: [String: String] = ["question_key":"pets", "question":"Are you a dog or cat person?", "answer":"na", "type":"yesno"]
             let dict7: [String: String] = ["question_key":"freetime", "question":"What is your favorite thing to do in your freetime?", "answer":"na", "type":"freetext"]
             let dict8: [String: String] = ["question_key":"tvshow", "question":"What is your favorite movie/tv show?", "answer":"na", "type":"freetext"]
             

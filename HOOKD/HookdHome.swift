@@ -12,6 +12,8 @@ class HookdHome: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var profileImage : UIImageView!
     @IBOutlet var tableView : UITableView!
+    @IBOutlet var navBar : UIView!
+    @IBOutlet var actionButton : UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +23,9 @@ class HookdHome: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         tableView.layoutMargins  = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero
+        
+        navBar.backgroundColor = HOOKDNAV
+        actionButton.backgroundColor = HOOKDRED
         // Do any additional setup after loading the view.
     }
 

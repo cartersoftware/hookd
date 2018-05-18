@@ -13,6 +13,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet var profilePic : UIImageView!
     @IBOutlet var profileTV  : UITableView!
     @IBOutlet var usernameLabel : UILabel!
+    @IBOutlet var navBar : UIView!
     
     var imageOperation = OperationQueue()
     
@@ -29,6 +30,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         profilePic.clipsToBounds       = true
         
         usernameLabel.text             = UserManager.sharedManager.username
+        
+        navBar.backgroundColor         = HOOKDNAV
         
         // Do any additional setup after loading the view.
         imageOperation.maxConcurrentOperationCount = 1
@@ -94,7 +97,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let customIdentifer  = UserManager.sharedManager.arrayOfDict[indexPath.row]["type"];
-        
+        let customIdentifer2 = UserManager.sharedManager.arrayOfDict[indexPath.row]["question_key"];
+
         if(customIdentifer == "yesnomaybe") {
             let questionCell           = tableView.dequeueReusableCell(withIdentifier: customIdentifer!, for: indexPath) as! YesNoMaybeCell
             questionCell.question.text = UserManager.sharedManager.arrayOfDict[indexPath.row]["question"]
@@ -130,6 +134,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             questionCell.question.text = UserManager.sharedManager.arrayOfDict[indexPath.row]["question"]
             questionCell.identifier    = indexPath.row
             
+            if(customIdentifer2 == "pets")
+            {
+                questionCell.yesButton.setTitle("Dog", for: .normal);
+                questionCell.noButton.setTitle("Cat", for: .normal);
+            }
             
             if UserManager.sharedManager.arrayOfDict[indexPath.row]["answer"] == "na" {
                 
@@ -364,7 +373,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let freetime = UserManager.sharedManager.arrayOfDict[UserManager.sharedManager.findQuestionIndexByKey(key:"freetime")]["answer"]
         let tvshow   = UserManager.sharedManager.arrayOfDict[UserManager.sharedManager.findQuestionIndexByKey(key:"tvshow")]["answer"]
         
-        if((aboutMe?.count)! > 3 && (kids?.count)! > 0 && (marriage?.count)! > 0 && (alcohol?.count)! > 0 && (smoker?.count)! > 0 && (pets?.count)! > 3 && (freetime?.count)! > 3 && (tvshow?.count)! > 3) {
+        if((aboutMe?.count)! > 3 && (kids?.count)! > 0 && (marriage?.count)! > 0 && (alcohol?.count)! > 0 && (smoker?.count)! > 0 && (pets?.count)! > 0 && (freetime?.count)! > 3 && (tvshow?.count)! > 3) {
             
             UserManager.sharedManager.updateProfile(about_me: aboutMe!, kids: kids!, marriage: marriage!, alcohol: alcohol!, smoker: smoker!, pets: pets!, freetime: freetime!, tvshow: tvshow!) { (done) in
                 if(done) {

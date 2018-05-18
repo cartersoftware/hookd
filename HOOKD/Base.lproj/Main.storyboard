@@ -842,6 +842,8 @@ men who love minions</string>
                         <viewLayoutGuide key="safeArea" id="lHa-bp-thJ"/>
                     </view>
                     <connections>
+                        <outlet property="actionButton" destination="MI5-Ga-3VJ" id="ZFP-r2-Dbt"/>
+                        <outlet property="navBar" destination="Xjf-Gw-VWq" id="AUp-Mn-iaX"/>
                         <outlet property="profileImage" destination="Z9z-0C-ZIa" id="GF3-2s-vyq"/>
                         <outlet property="tableView" destination="d1w-fM-UYB" id="K1F-Ij-SH5"/>
                     </connections>
@@ -1200,7 +1202,7 @@ men who love minions</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Analyzing..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ltn-0r-Cgd" customClass="CLTypingLabel" customModule="HOOKD" customModuleProvider="target">
-                                <rect key="frame" x="188" y="232" width="0.0" height="21"/>
+                                <rect key="frame" x="187.5" y="232" width="0.0" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="ujB-kj-9dY"/>
                                 </constraints>
@@ -1263,7 +1265,7 @@ men who love minions</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gkk-ML-XGv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117.59999999999999" y="1495.5022488755624"/>
+            <point key="canvasLocation" x="820" y="1496"/>
         </scene>
         <!--Video View Controller-->
         <scene sceneID="sMB-0D-SHi">
@@ -1303,10 +1305,13 @@ men who love minions</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4nz-AF-uYf"/>
                     </view>
+                    <connections>
+                        <outlet property="continueButton" destination="1XY-5T-Kvf" id="8k2-ht-LbL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="emh-vA-awL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="820" y="1495.5022488755624"/>
+            <point key="canvasLocation" x="118" y="1496"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="SLs-an-zE0">
@@ -1634,6 +1639,7 @@ men who love minions</string>
                         <viewLayoutGuide key="safeArea" id="dLS-df-m8E"/>
                     </view>
                     <connections>
+                        <outlet property="navBar" destination="rTW-Dj-6KG" id="xqm-uF-ll8"/>
                         <outlet property="profilePic" destination="w7f-qt-FkB" id="Npa-5H-bj6"/>
                         <outlet property="profileTV" destination="0SP-Ri-aqy" id="iFk-c9-g3l"/>
                         <outlet property="usernameLabel" destination="adA-Lr-7Ky" id="wn3-3t-cB2"/>
@@ -1747,6 +1753,7 @@ men who love minions</string>
                     <connections>
                         <outlet property="answer" destination="Jqf-dn-qPQ" id="jtk-ZL-SZS"/>
                         <outlet property="doneButton" destination="SNH-Vz-Sh4" id="I2O-Ja-2Vd"/>
+                        <outlet property="navBar" destination="xZG-Vl-H5k" id="4tr-Pl-Bh7"/>
                         <outlet property="question" destination="eA4-Ia-Dzx" id="uKT-wX-21V"/>
                     </connections>
                 </viewController>
@@ -1966,6 +1973,8 @@ men who love minions</string>
                         <viewLayoutGuide key="safeArea" id="1tv-fG-Cui"/>
                     </view>
                     <connections>
+                        <outlet property="actionButton" destination="bka-fh-rA3" id="dYK-VW-ENy"/>
+                        <outlet property="navBar" destination="u9M-C5-9eD" id="n2F-VK-QVo"/>
                         <outlet property="profileImage" destination="Xk6-kg-2Op" id="xVJ-vG-LZb"/>
                     </connections>
                 </viewController>
@@ -2185,6 +2194,8 @@ men who love minions</string>
                         <viewLayoutGuide key="safeArea" id="I6h-Hh-4aj"/>
                     </view>
                     <connections>
+                        <outlet property="actionButton" destination="gfi-8G-gCc" id="fHO-Xj-sP7"/>
+                        <outlet property="navBar" destination="xBb-Da-emo" id="mm7-Of-FJQ"/>
                         <outlet property="profileImage" destination="gPW-9H-9hK" id="NAX-Me-0Yc"/>
                     </connections>
                 </viewController>
