@@ -97,6 +97,7 @@ class ProfilePictureWizard: UIViewController, UIImagePickerControllerDelegate, U
             
             UIView.animate(withDuration: 1.0, animations: {
                 self.saveAndContinue.alpha = 1.0
+                UserManager.sharedManager.savedImage = self.savedImageView.image!
             })
         }
         else if(faces.count > 1) {
@@ -188,6 +189,11 @@ class ProfilePictureWizard: UIViewController, UIImagePickerControllerDelegate, U
                 UIImage(cgImage: cgImage).draw(in: faceRect)
                 return UIGraphicsGetImageFromCurrentImageContext()
             } ?? []
+    }
+    
+    @IBAction func continueToVideo() {
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "video") as! VideoViewController
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 

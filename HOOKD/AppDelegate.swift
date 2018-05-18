@@ -13,6 +13,7 @@ let HOOKEDTERMS   = "http://hookd.info/terms.php"
 let HOOKEDPRIV    = "http://hookd.info/privacypolicy.php"
 let HOOKDRED      = UIColor(red: 239.0/255.0, green: 107.0/255.0, blue: 87.0/255.0, alpha: 1.0)
 let OURERROR      = "Something went wrong on our side.";
+let AMZPROFILES   = "https://s3-us-west-2.amazonaws.com/hookd/GRAPHICS/PROFILEPICS/"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

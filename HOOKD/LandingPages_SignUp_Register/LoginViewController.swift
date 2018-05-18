@@ -31,25 +31,21 @@ class LoginViewController: UIViewController {
         
         DispatchQueue.main.async {
 
-        let vc = self.storyboard!.instantiateViewController(withIdentifier: "profilePic") as! ProfilePictureWizard
-        self.navigationController?.pushViewController(vc, animated: true)
-        
+            UserManager.sharedManager.authenticateUser(self.username.text!, password: self.password.text!) { (done, errormsg) in
+                if(done) {
+                    DispatchQueue.main.async {
+                        let vc = self.storyboard!.instantiateViewController(withIdentifier: "hookdhome") as! HookdHome
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                }
+                else {
+                    DispatchQueue.main.async {
+                        AlertManager.sharedManager.showError(title: "Oops", subTitle: errormsg, buttonTitle: "Okay")
+                    }
+                }
+            }
+            
         }
-        
-        /*
-        UserManager.sharedManager.authenticateUser(username.text!, password: password.text!) { (done, errormsg) in
-            if(done) {
-                DispatchQueue.main.async {
-                    let vc = self.storyboard!.instantiateViewController(withIdentifier: "hookdhome") as! HookdHome
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-            }
-            else {
-                DispatchQueue.main.async {
-                    AlertManager.sharedManager.showError(title: "Oops", subTitle: errormsg, buttonTitle: "Okay")
-                }
-            }
-        }*/
     }
     
     @IBAction func goBack() {

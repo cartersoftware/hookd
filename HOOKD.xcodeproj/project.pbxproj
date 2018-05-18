@@ -10,6 +10,12 @@
 		1049ADEA55A1F2FDA02669EE /* Pods_HOOKD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B9B49A5BC633915382015BE /* Pods_HOOKD.framework */; };
 		282BFDE2F4634B9A237306B8 /* Pods_HOOKDTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77289D2C5718A37BEC463A58 /* Pods_HOOKDTests.framework */; };
 		9C8A145A2AAC455C407299FB /* Pods_HOOKDUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 664ADD72BB9EFD3A03B221A0 /* Pods_HOOKDUITests.framework */; };
+		DB0FEFD120ACD4FA008C4458 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0FEFD020ACD4FA008C4458 /* ProfileViewController.swift */; };
+		DB0FEFD520ACE533008C4458 /* YesNoMaybeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0FEFD420ACE533008C4458 /* YesNoMaybeCell.swift */; };
+		DB0FEFD720ACE541008C4458 /* YesNoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0FEFD620ACE541008C4458 /* YesNoCell.swift */; };
+		DB0FEFD920ACE54E008C4458 /* FreeTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0FEFD820ACE54E008C4458 /* FreeTextCell.swift */; };
+		DB168C5720AEA085008C3BC9 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB168C5620AEA085008C3BC9 /* VideoViewController.swift */; };
+		DB25733220AE73FE002D419D /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB25733120AE73FE002D419D /* QuestionViewController.swift */; };
 		DB857F6720A3E22C00532F3A /* TermsPrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB857F6620A3E22C00532F3A /* TermsPrivacyViewController.swift */; };
 		DB857F6920A8C93A00532F3A /* ProfilePictureWizard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB857F6820A8C93A00532F3A /* ProfilePictureWizard.swift */; };
 		DBA868A720AA8CD00075BAC5 /* CLTypingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA868A620AA8CD00075BAC5 /* CLTypingLabel.swift */; };
@@ -58,6 +64,12 @@
 		84EA20DFEF8ACCFFD6816F41 /* Pods-HOOKDUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HOOKDUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HOOKDUITests/Pods-HOOKDUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		91829BD037C84B2B8F3B3CD0 /* Pods-HOOKDUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HOOKDUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HOOKDUITests/Pods-HOOKDUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D2A1A5BC360D8D41D82D9380 /* Pods-HOOKDTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HOOKDTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HOOKDTests/Pods-HOOKDTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DB0FEFD020ACD4FA008C4458 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		DB0FEFD420ACE533008C4458 /* YesNoMaybeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YesNoMaybeCell.swift; sourceTree = "<group>"; };
+		DB0FEFD620ACE541008C4458 /* YesNoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YesNoCell.swift; sourceTree = "<group>"; };
+		DB0FEFD820ACE54E008C4458 /* FreeTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeTextCell.swift; sourceTree = "<group>"; };
+		DB168C5620AEA085008C3BC9 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		DB25733120AE73FE002D419D /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		DB857F6620A3E22C00532F3A /* TermsPrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsPrivacyViewController.swift; sourceTree = "<group>"; };
 		DB857F6820A8C93A00532F3A /* ProfilePictureWizard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePictureWizard.swift; sourceTree = "<group>"; };
 		DBA868A620AA8CD00075BAC5 /* CLTypingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLTypingLabel.swift; sourceTree = "<group>"; };
@@ -138,9 +150,30 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DB0FEFD220ACE51A008C4458 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				DB0FEFD320ACE522008C4458 /* ProfileCells */,
+				DB0FEFD020ACD4FA008C4458 /* ProfileViewController.swift */,
+				DB25733120AE73FE002D419D /* QuestionViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		DB0FEFD320ACE522008C4458 /* ProfileCells */ = {
+			isa = PBXGroup;
+			children = (
+				DB0FEFD420ACE533008C4458 /* YesNoMaybeCell.swift */,
+				DB0FEFD620ACE541008C4458 /* YesNoCell.swift */,
+				DB0FEFD820ACE54E008C4458 /* FreeTextCell.swift */,
+			);
+			path = ProfileCells;
+			sourceTree = "<group>";
+		};
 		DB857F6A20A8C94400532F3A /* InitialWizard */ = {
 			isa = PBXGroup;
 			children = (
+				DB168C5620AEA085008C3BC9 /* VideoViewController.swift */,
 				DB857F6820A8C93A00532F3A /* ProfilePictureWizard.swift */,
 			);
 			path = InitialWizard;
@@ -179,6 +212,7 @@
 		DBCD0986209D50C6007DE92E /* HOOKD */ = {
 			isa = PBXGroup;
 			children = (
+				DB0FEFD220ACE51A008C4458 /* Profile */,
 				DBA868A820AA8CDD0075BAC5 /* 3rdParty */,
 				DB857F6A20A8C94400532F3A /* InitialWizard */,
 				DBE7CA4D209E8C7E00F28396 /* LandingPages_SignUp_Register */,
@@ -459,10 +493,16 @@
 				DBE7CA45209D913B00F28396 /* AlertManager.swift in Sources */,
 				DBCD09B6209D728D007DE92E /* SignUpViewController.swift in Sources */,
 				DBE7CA4A209D979100F28396 /* HookdHome.swift in Sources */,
+				DB0FEFD920ACE54E008C4458 /* FreeTextCell.swift in Sources */,
 				DBCD098A209D50C6007DE92E /* LandingPage.swift in Sources */,
+				DB25733220AE73FE002D419D /* QuestionViewController.swift in Sources */,
 				DBE7CA53209EC3CE00F28396 /* MatchCell.swift in Sources */,
+				DB168C5720AEA085008C3BC9 /* VideoViewController.swift in Sources */,
+				DB0FEFD520ACE533008C4458 /* YesNoMaybeCell.swift in Sources */,
+				DB0FEFD120ACD4FA008C4458 /* ProfileViewController.swift in Sources */,
 				DBA868A720AA8CD00075BAC5 /* CLTypingLabel.swift in Sources */,
 				DBE7CA47209D921600F28396 /* UserManager.swift in Sources */,
+				DB0FEFD720ACE541008C4458 /* YesNoCell.swift in Sources */,
 				DBCD0988209D50C6007DE92E /* AppDelegate.swift in Sources */,
 				DB857F6720A3E22C00532F3A /* TermsPrivacyViewController.swift in Sources */,
 				DBE7CA57209ED2B100F28396 /* ForgotUsername.swift in Sources */,

@@ -39,6 +39,12 @@ class HookdHome: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.navigationController?.pushViewController(vc, animated: false)
     }
 
+    @IBAction func gotoProfile() {
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "profile") as! ProfileViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+        UserManager.sharedManager.visitedFromHome = true
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 165
     }
