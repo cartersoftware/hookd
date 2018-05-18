@@ -9,16 +9,16 @@
 import UIKit
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
     @IBOutlet var profilePic : UIImageView!
     @IBOutlet var profileTV  : UITableView!
     @IBOutlet var usernameLabel : UILabel!
     
     var imageOperation = OperationQueue()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Create a dictionary and add it to the array.
         UserManager.sharedManager.initProfileQuestions()
         
@@ -45,7 +45,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         print("LOADED AGAIN...")
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -62,7 +62,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         let customIdentifer  = UserManager.sharedManager.arrayOfDict[indexPath.row]["type"];
-
+        
         if(customIdentifer == "yesno" || customIdentifer == "yesnomaybe") {
             return false
         }
@@ -73,7 +73,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         let customIdentifer  = UserManager.sharedManager.arrayOfDict[indexPath.row]["type"];
-
+        
         if(customIdentifer == "yesnomaybe" || customIdentifer == "yesno") {
             return 68
         }
@@ -109,7 +109,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
                 let currentValue = UserManager.sharedManager.arrayOfDict[indexPath.row]["answer"]
                 print("CURRENT ANSWER: \(currentValue)")
-
+                
                 if currentValue == "yes" {
                     questionCell.yesButton.backgroundColor = HOOKDRED
                 } else if currentValue == "no" {
@@ -129,8 +129,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             let questionCell           = tableView.dequeueReusableCell(withIdentifier: customIdentifer!, for: indexPath) as! YesNoCell
             questionCell.question.text = UserManager.sharedManager.arrayOfDict[indexPath.row]["question"]
             questionCell.identifier    = indexPath.row
-
-           
+            
+            
             if UserManager.sharedManager.arrayOfDict[indexPath.row]["answer"] == "na" {
                 
                 UserManager.sharedManager.arrayOfDict[indexPath.row]["answer"] = UserManager.sharedManager.userInfo[UserManager.sharedManager.arrayOfDict[indexPath.row]["question_key"] ?? "na"] as? String
@@ -145,7 +145,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     questionCell.yesButton.backgroundColor = HOOKDRED
                 } else if currentValue == "no" {
                     questionCell.noButton.backgroundColor = HOOKDRED
-                } 
+                }
             }
             
             
@@ -155,6 +155,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if(customIdentifer == "freetext") {
             let questionCell           = tableView.dequeueReusableCell(withIdentifier: customIdentifer!, for: indexPath) as! FreeTextCell
             questionCell.question.text = UserManager.sharedManager.arrayOfDict[indexPath.row]["question"]
+            
             if UserManager.sharedManager.arrayOfDict[indexPath.row]["answer"] == "na" && UserManager.sharedManager.visitedFromHome == false {
                 questionCell.mainQuestionAnswer.text = "Tap to answer question"
             }
@@ -191,14 +192,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let customIdentifer  = UserManager.sharedManager.arrayOfDict[indexPath.row]["type"];
-
+        
         if(customIdentifer == "freetext") {
             //Take them to the detail view
             let vc = self.storyboard!.instantiateViewController(withIdentifier: "question") as! QuestionViewController
             self.navigationController?.pushViewController(vc, animated: true)
-    
+            
             UserManager.sharedManager.currentQuestionIndex = indexPath.row
-           
+            
         }
     }
     
@@ -252,7 +253,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             let alert = UIAlertController(title: "Manual Review", message: "Don't worry, we'll send your profile picture in for manual review with our staff, and your profile picture will be approved shortly!", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
-        
+            
         }
     }
     
@@ -353,7 +354,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
             })
         }
-            
+        
         let aboutMe  = UserManager.sharedManager.arrayOfDict[UserManager.sharedManager.findQuestionIndexByKey(key:"about_me")]["answer"]
         let kids     = UserManager.sharedManager.arrayOfDict[UserManager.sharedManager.findQuestionIndexByKey(key:"kids")]["answer"]
         let marriage = UserManager.sharedManager.arrayOfDict[UserManager.sharedManager.findQuestionIndexByKey(key:"marriage")]["answer"]
@@ -362,37 +363,43 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let pets     = UserManager.sharedManager.arrayOfDict[UserManager.sharedManager.findQuestionIndexByKey(key:"pets")]["answer"]
         let freetime = UserManager.sharedManager.arrayOfDict[UserManager.sharedManager.findQuestionIndexByKey(key:"freetime")]["answer"]
         let tvshow   = UserManager.sharedManager.arrayOfDict[UserManager.sharedManager.findQuestionIndexByKey(key:"tvshow")]["answer"]
-
-        UserManager.sharedManager.updateProfile(about_me: aboutMe!, kids: kids!, marriage: marriage!, alcohol: alcohol!, smoker: smoker!, pets: pets!, freetime: freetime!, tvshow: tvshow!) { (done) in
-            if(done) {
-                print("Profile Updated!")
+        
+        if((aboutMe?.count)! > 3 && (kids?.count)! > 0 && (marriage?.count)! > 0 && (alcohol?.count)! > 0 && (smoker?.count)! > 0 && (pets?.count)! > 3 && (freetime?.count)! > 3 && (tvshow?.count)! > 3) {
+            
+            UserManager.sharedManager.updateProfile(about_me: aboutMe!, kids: kids!, marriage: marriage!, alcohol: alcohol!, smoker: smoker!, pets: pets!, freetime: freetime!, tvshow: tvshow!) { (done) in
+                if(done) {
+                    print("Profile Updated!")
+                }
+                else {
+                    print("Failed to update profile.")
+                }
+            }
+            
+            if UserManager.sharedManager.visitedFromHome == true {
+                self.navigationController?.popViewController(animated: true)
             }
             else {
-                print("Failed to update profile.")
+                let vc = self.storyboard!.instantiateViewController(withIdentifier: "hookdhome") as! HookdHome
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
-        
-        if UserManager.sharedManager.visitedFromHome == true {
-            self.navigationController?.popViewController(animated: true)
-        }
         else {
-            let vc = self.storyboard!.instantiateViewController(withIdentifier: "hookdhome") as! HookdHome
-            self.navigationController?.pushViewController(vc, animated: true)
+            AlertManager.sharedManager.showError(title: "Missing Profile Information", subTitle: "You must fill out all parts of your profile before it can be saved.", buttonTitle: "Okay")
         }
     }
     
     @IBAction func close() {
         self.navigationController?.popViewController(animated: true)
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
