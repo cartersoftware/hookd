@@ -1719,7 +1719,7 @@ men who love minions</string>
                                 </constraints>
                                 <color key="textColor" red="0.3358383566" green="0.3358383566" blue="0.3358383566" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" smartDashesType="no"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" returnKeyType="done" smartDashesType="no"/>
                                 <connections>
                                     <outlet property="delegate" destination="KuC-In-Ia0" id="Bg2-Fl-JzN"/>
                                 </connections>
