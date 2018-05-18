@@ -555,7 +555,7 @@
                                         <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JUN-LW-aZv">
-                                                <rect key="frame" x="0.0" y="0.0" width="125.5" height="60"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="125" height="60"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alerts" translatesAutoresizingMaskIntoConstraints="NO" id="zSo-D5-CRv">
                                                         <rect key="frame" x="48" y="15" width="30" height="30"/>
@@ -565,7 +565,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aD9-UA-8hS">
-                                                        <rect key="frame" x="0.0" y="0.0" width="125.5" height="60"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="125" height="60"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="Tan-yJ-upF"/>
                                                         </constraints>
@@ -585,17 +585,17 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MI5-Ga-3VJ">
-                                                <rect key="frame" x="125.5" y="0.0" width="125.5" height="60"/>
+                                                <rect key="frame" x="125" y="0.0" width="125" height="60"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hookdshort" translatesAutoresizingMaskIntoConstraints="NO" id="ttE-UT-TXt">
-                                                        <rect key="frame" x="42.5" y="10" width="40" height="40"/>
+                                                        <rect key="frame" x="42" y="10" width="40" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="aD4-SV-ikc"/>
                                                             <constraint firstAttribute="width" constant="40" id="nnb-kG-dum"/>
                                                         </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXw-My-ccJ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="125.5" height="60"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="125" height="60"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="vz4-OO-o0S"/>
                                                         </constraints>
@@ -611,17 +611,17 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9hn-I5-fNq">
-                                                <rect key="frame" x="251" y="0.0" width="124" height="60"/>
+                                                <rect key="frame" x="250" y="0.0" width="125" height="60"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="nrh-BJ-xvd">
-                                                        <rect key="frame" x="42" y="10" width="40" height="40"/>
+                                                        <rect key="frame" x="42.5" y="10" width="40" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="tG0-B6-4Ae"/>
                                                             <constraint firstAttribute="width" constant="40" id="vD3-BH-sGx"/>
                                                         </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XwW-OX-qEH">
-                                                        <rect key="frame" x="-0.5" y="0.0" width="125.5" height="60"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="125" height="60"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="iDi-Cg-tOs"/>
                                                         </constraints>
@@ -800,6 +800,7 @@ men who love minions</string>
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="hookedStatus" destination="f2d-F5-rth" id="1kE-5M-gpg"/>
+                                                    <outlet property="hookedStatusLabel" destination="aV0-EF-xCh" id="Dea-ev-8Sl"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -1275,12 +1276,6 @@ men who love minions</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A really badass video will be here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbE-3N-zVE">
-                                <rect key="frame" x="61" y="323.5" width="253" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1XY-5T-Kvf">
                                 <rect key="frame" x="0.0" y="618" width="375" height="49"/>
                                 <color key="backgroundColor" red="1" green="0.42862617660000002" blue="0.34617619760000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1294,24 +1289,36 @@ men who love minions</string>
                                     <action selector="gotoProfile" destination="8f5-EK-Hq3" eventType="touchUpInside" id="mNb-Yf-GdZ"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Excited? Let's start by creating your profile picture. Tap Continue below" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9uN-bd-bEs">
+                                <rect key="frame" x="22" y="299" width="331" height="69"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="69" id="dD3-Am-bpK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="1XY-5T-Kvf" firstAttribute="trailing" secondItem="4nz-AF-uYf" secondAttribute="trailing" id="1IE-uj-g8c"/>
                             <constraint firstItem="1XY-5T-Kvf" firstAttribute="bottom" secondItem="4nz-AF-uYf" secondAttribute="bottom" id="68M-cQ-ITW"/>
-                            <constraint firstItem="jbE-3N-zVE" firstAttribute="centerY" secondItem="vAd-dA-qRW" secondAttribute="centerY" id="IuH-pI-Ddo"/>
+                            <constraint firstItem="4nz-AF-uYf" firstAttribute="trailing" secondItem="9uN-bd-bEs" secondAttribute="trailing" constant="22" id="Ipe-el-0RW"/>
                             <constraint firstItem="1XY-5T-Kvf" firstAttribute="leading" secondItem="4nz-AF-uYf" secondAttribute="leading" id="UPc-k4-sg2"/>
-                            <constraint firstItem="jbE-3N-zVE" firstAttribute="centerX" secondItem="vAd-dA-qRW" secondAttribute="centerX" id="mlK-h6-4ta"/>
+                            <constraint firstItem="9uN-bd-bEs" firstAttribute="centerX" secondItem="vAd-dA-qRW" secondAttribute="centerX" id="bFr-kY-am2"/>
+                            <constraint firstItem="9uN-bd-bEs" firstAttribute="centerY" secondItem="vAd-dA-qRW" secondAttribute="centerY" id="qHf-Ba-FdJ"/>
+                            <constraint firstItem="9uN-bd-bEs" firstAttribute="leading" secondItem="4nz-AF-uYf" secondAttribute="leading" constant="22" id="zQ8-Fe-hjO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4nz-AF-uYf"/>
                     </view>
                     <connections>
                         <outlet property="continueButton" destination="1XY-5T-Kvf" id="8k2-ht-LbL"/>
+                        <outlet property="instructionLabel" destination="9uN-bd-bEs" id="XTM-1v-tn3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="emh-vA-awL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="118" y="1496"/>
+            <point key="canvasLocation" x="117.59999999999999" y="1495.5022488755624"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="SLs-an-zE0">
@@ -1907,7 +1914,7 @@ men who love minions</string>
                                                         </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2TC-4i-lWV">
-                                                        <rect key="frame" x="0.5" y="0.0" width="124.5" height="60"/>
+                                                        <rect key="frame" x="1" y="0.0" width="124" height="60"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="F41-6X-MNk"/>
                                                         </constraints>
@@ -2062,7 +2069,7 @@ men who love minions</string>
                                         <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LsZ-Mh-C0r">
-                                                <rect key="frame" x="0.0" y="0.0" width="125.5" height="60"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="125" height="60"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alerts" translatesAutoresizingMaskIntoConstraints="NO" id="a2j-Gm-4N3">
                                                         <rect key="frame" x="48" y="15" width="30" height="30"/>
@@ -2072,7 +2079,7 @@ men who love minions</string>
                                                         </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U0f-3b-Omn">
-                                                        <rect key="frame" x="0.0" y="0.0" width="125.5" height="60"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="125" height="60"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="O7h-dM-5MV"/>
                                                         </constraints>
@@ -2092,17 +2099,17 @@ men who love minions</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ne3-05-Mdi">
-                                                <rect key="frame" x="125.5" y="0.0" width="125.5" height="60"/>
+                                                <rect key="frame" x="125" y="0.0" width="125" height="60"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hookdshort" translatesAutoresizingMaskIntoConstraints="NO" id="ly8-oe-o54">
-                                                        <rect key="frame" x="42.5" y="10" width="40" height="40"/>
+                                                        <rect key="frame" x="42" y="10" width="40" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="F5W-YR-mYe"/>
                                                             <constraint firstAttribute="width" constant="40" id="YJW-q1-IEX"/>
                                                         </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIM-3Z-a0J">
-                                                        <rect key="frame" x="0.0" y="0.0" width="125.5" height="60"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="125" height="60"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="k1S-I3-2GB"/>
                                                         </constraints>
@@ -2131,7 +2138,7 @@ men who love minions</string>
                                                         </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I8C-3K-ZZ0">
-                                                        <rect key="frame" x="0.0" y="0.0" width="125.5" height="60"/>
+                                                        <rect key="frame" x="0.5" y="0.0" width="124.5" height="60"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="iX6-AO-pB0"/>
                                                         </constraints>

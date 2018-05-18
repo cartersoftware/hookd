@@ -27,6 +27,7 @@
 		DBCD09A8209D50C6007DE92E /* HOOKDUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCD09A7209D50C6007DE92E /* HOOKDUITests.swift */; };
 		DBCD09B6209D728D007DE92E /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCD09B5209D728D007DE92E /* SignUpViewController.swift */; };
 		DBCD09B8209D7A06007DE92E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBCD09B7209D7A06007DE92E /* Assets.xcassets */; };
+		DBD7C8DE20AF545500C50D1B /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DBD7C8DD20AF534500C50D1B /* video.mp4 */; };
 		DBE7CA45209D913B00F28396 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE7CA44209D913B00F28396 /* AlertManager.swift */; };
 		DBE7CA47209D921600F28396 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE7CA46209D921600F28396 /* UserManager.swift */; };
 		DBE7CA4A209D979100F28396 /* HookdHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE7CA49209D979100F28396 /* HookdHome.swift */; };
@@ -87,6 +88,7 @@
 		DBCD09A9209D50C6007DE92E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBCD09B5209D728D007DE92E /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		DBCD09B7209D7A06007DE92E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DBD7C8DD20AF534500C50D1B /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
 		DBE7CA44209D913B00F28396 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		DBE7CA46209D921600F28396 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		DBE7CA49209D979100F28396 /* HookdHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HookdHome.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				DBE7CA4E209EB27E00F28396 /* AlertsViewController.swift */,
 				DBE7CA50209EB29600F28396 /* MyLikesViewController.swift */,
 				DBE7CA52209EC3CE00F28396 /* MatchCell.swift */,
+				DBD7C8DD20AF534500C50D1B /* video.mp4 */,
 				DBCD09B7209D7A06007DE92E /* Assets.xcassets */,
 				DBCD098B209D50C6007DE92E /* Main.storyboard */,
 				DBCD0990209D50C6007DE92E /* LaunchScreen.storyboard */,
@@ -386,6 +389,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBD7C8DE20AF545500C50D1B /* video.mp4 in Resources */,
 				DBCD0992209D50C6007DE92E /* LaunchScreen.storyboard in Resources */,
 				DBCD09B8209D7A06007DE92E /* Assets.xcassets in Resources */,
 				DBCD098D209D50C6007DE92E /* Main.storyboard in Resources */,

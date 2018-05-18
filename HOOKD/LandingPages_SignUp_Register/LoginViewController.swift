@@ -36,6 +36,7 @@ class LoginViewController: UIViewController {
                 if(done) {
                     DispatchQueue.main.async {
                         let vc = self.storyboard!.instantiateViewController(withIdentifier: "hookdhome") as! HookdHome
+                        //let vc = self.storyboard!.instantiateViewController(withIdentifier: "video") as! VideoViewController
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
                 }

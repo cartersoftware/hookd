@@ -11,6 +11,7 @@ import UIKit
 class MatchCell: UITableViewCell {
 
     @IBOutlet var hookedStatus : UIImageView!
+    @IBOutlet var hookedStatusLabel : UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,6 +20,7 @@ class MatchCell: UITableViewCell {
         hookedStatus.image = hookedStatus.image!.withRenderingMode(.alwaysTemplate)
         hookedStatus.backgroundColor = UIColor.white
         hookedStatus.tintColor = HOOKDRED
+        hookedStatusLabel.textColor = HOOKDRED
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
