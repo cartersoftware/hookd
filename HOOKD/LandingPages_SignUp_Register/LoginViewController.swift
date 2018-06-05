@@ -32,6 +32,8 @@ class LoginViewController: UIViewController {
         
         DispatchQueue.main.async {
 
+            print("WTF LOGIN ISNT WORKING..")
+            
             UserManager.sharedManager.authenticateUser(self.username.text!, password: self.password.text!) { (done, errormsg) in
                 if(done) {
                     DispatchQueue.main.async {

@@ -7,24 +7,30 @@
 //
 
 import UIKit
+import SKPhotoBrowser
 
 class UserManager : NSObject {
     
-    var username        = "";
-    var email           = "";
-    var gender          = "";
-    var profilePic      = "";
+    var username             = "";
+    var email                = "";
+    var gender               = "";
+    var profilePic           = "";
     
-    var savedImage      = UIImage()
+    var savedImage           = UIImage()
     
-    var isViewingTerms  = true
-    var arrayOfDict     = [[String: String]]()
+    var isViewingTerms       = true
+    var arrayOfDict          = [[String: String]]()
     var currentQuestionKey   = ""
     var currentQuestionIndex = 0
-    var cachedImages    = NSMutableDictionary()
-    var userInfo        = NSDictionary()
-    var visitedFromHome = false
-    var loadedProfileOnce = false
+    var cachedImages         = NSMutableDictionary()
+    var userInfo             = NSDictionary()
+    var visitedFromHome      = false
+    var loadedProfileOnce    = false
+    var imageStrings         = NSMutableArray()
+    
+    var images = [SKPhoto]()
+    
+    
     class var sharedManager : UserManager {
         struct _Singleton {
             static let instance = UserManager()
@@ -37,7 +43,7 @@ class UserManager : NSObject {
         if(loadedProfileOnce == false) {
             loadedProfileOnce = true
             
-            let dict1: [String: String] = ["question_key":"about_me", "question":"Say something about yourself.", "answer":"na", "type":"freetext"]
+            let dict1: [String: String] = ["question_key":"about_me", "question":"Say something about yourself: (100 character min*)", "answer":"na", "type":"freetext"]
             let dict3: [String: String] = ["question_key":"kids", "question":"Do you want kids?", "answer":"na", "type":"yesnomaybe"]
             let dict2: [String: String] = ["question_key":"marriage", "question":"Do you want to get married?", "answer":"na", "type":"yesnomaybe"]
             let dict5: [String: String] = ["question_key":"alcohol", "question":"Do you drink?", "answer":"na", "type":"yesno"]
@@ -119,7 +125,7 @@ class UserManager : NSObject {
             if serverError == nil && serverData != nil {
                 
                 let data = String.init(data: serverData!, encoding: .utf8)
-                print(data)
+                print("AUTH DATA \(data)")
                 
                 if let jsonObject = try? JSONSerialization.jsonObject(with: serverData!, options: []) as? NSDictionary {
                     
@@ -215,6 +221,106 @@ class UserManager : NSObject {
             }.resume()
     }
     
+    func removePicture(username:String, picture:String, completionBlock:@escaping (_ success:Bool) -> Void) {
+        
+        var urlRequest = URLRequest(url: URL(string:HOOKDAPI + "RemovePhoto.php?")!)
+        
+        urlRequest.httpMethod = "POST"
+        urlRequest.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = "username=\(username)&pictureName=\(picture)".data(using: .utf8)
+        
+        URLSession.shared.dataTask(with: urlRequest) { (serverData, serverResponse, serverError) in
+            
+            print("SERVER ERROR: \(serverError)")
+            let dataString = NSString(data: serverData!, encoding: String.Encoding.utf8.rawValue)
+            print("DATA STRING FOR PICTURE REMOVAL: \(dataString)")
+            
+            if serverError == nil && serverData != nil {
+                
+                if let jsonObject = try? JSONSerialization.jsonObject(with: serverData!, options: []) as? NSDictionary {
+                    
+                    if(jsonObject?.object(forKey: "Status") as? String == "Success") {
+                            completionBlock(true)
+                        }
+                        else {
+                            completionBlock(false)
+                        }
+                    }
+                    else {
+                        completionBlock(false)
+                    }
+                } else {
+                    completionBlock(false)
+                }
+            
+            }.resume()
+    }
+    
+    func getUserPictures(username:String, completionBlock:@escaping (_ success:Bool) -> Void) {
+            
+            var urlRequest = URLRequest(url: URL(string:HOOKDAPI + "GetUserImages.php?")!)
+            
+            urlRequest.httpMethod = "POST"
+            urlRequest.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+            urlRequest.httpBody = "username=\(username)".data(using: .utf8)
+        
+            print("USERNAME TO POST: \(username)")
+        
+            URLSession.shared.dataTask(with: urlRequest) { (serverData, serverResponse, serverError) in
+                
+                if(serverError == nil) {
+                let dataString = NSString(data: serverData!, encoding: String.Encoding.utf8.rawValue)
+                print("DATA STRING ZAC: \(dataString)")
+                
+                if serverError == nil && serverData != nil {
+                    
+                    if let jsonObject = try? JSONSerialization.jsonObject(with: serverData!, options: []) as? NSDictionary {
+                        
+                        if(jsonObject?.object(forKey: "Status") as? String == "Success") {
+                            
+                            if let picArray = jsonObject?.object(forKey:"Pictures") as? [[String:String]] {
+                                
+                                self.images       = [SKPhoto]()
+                                self.imageStrings = NSMutableArray()
+                                
+                                for dict in picArray {
+                                
+                                    let photoURL = AMZSTANDARDPICS + dict["picture"]!
+                                    let photo = SKPhoto.photoWithImageURL(photoURL)
+                                    photo.shouldCachePhotoURLImage = false // you can use image cache by true(NSCache)
+                                    self.images.append(photo)
+                                    self.imageStrings.add(dict["picture"] ?? "")
+                                }
+                                
+                                print("IMAGES: \(self.images)")
+                                print("IMAGE STRINGS: \(self.imageStrings)")
+                                
+                                completionBlock(true)
+                            }
+                            else {
+                                completionBlock(false)
+                            }
+                        }
+                        else {
+                            completionBlock(false)
+                        }
+                    } else {
+                        completionBlock(false)
+                    }
+                } else {
+                    completionBlock(false)
+                }
+                    
+                }
+                else {
+                    completionBlock(false)
+                    print("SERVER ERROR")
+                }
+                
+                }.resume()
+        }
+    
+    
     func updateProfile(about_me:String, kids:String, marriage:String, alcohol:String,smoker:String,pets:String,freetime:String,tvshow:String, completionBlock:@escaping (_ success:Bool) -> Void) {
         
         var urlRequest = URLRequest(url: URL(string:HOOKDAPI + "UpdateProfileSettings.php?")!)
@@ -306,6 +412,84 @@ class UserManager : NSObject {
                     if jsonData["Status"] as! String == "Success" {
                         
                         self.profilePic = jsonData["NewURL"] as! String
+                        
+                        completionBlock(true)
+                        
+                    }else{
+                        // Failed
+                        completionBlock(false)
+                    }
+                }else{
+                    completionBlock(false)
+                }
+            }catch{
+                completionBlock(false)
+            }
+            
+        }
+        
+        task.resume()
+        
+    }
+    
+    func uploadStandardPicture(_ pic:UIImage?,completionBlock:@escaping (_ isFinished:Bool) -> Void){
+        
+        let request        = NSMutableURLRequest(url: URL(string: HOOKDAPI + "UploadStandardPic.php?")!)
+        request.httpMethod = "POST"
+        let boundary       = generateBoundaryString()
+        
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        let body           = NSMutableData()
+        var profileData    = NSMutableData()
+        
+        let targetSize     =  CGSize(width: 400, height: 400)
+        let resizedImage   = resizeImage(image: pic!, targetSize: targetSize)
+        
+        if pic != nil {
+            profileData =  NSMutableData(data: UIImageJPEGRepresentation(resizedImage, 1.0)!)
+        }
+        
+        let fname    = "photo.jpg"
+        let mimetype = "image/jpg"
+        
+        body.append("--\(boundary)\r\n".data(using: String.Encoding.utf8)!)
+        body.append("Content-Disposition:form-data; name=\"profileImage\"\r\n\r\n".data(using: String.Encoding.utf8)!)
+        body.append("hi\r\n".data(using: String.Encoding.utf8)!)
+        
+        body.append("--\(boundary)\r\n".data(using: String.Encoding.utf8)!)
+        body.append("Content-Disposition: form-data; name=\"username\"\r\n\r\n".data(using: String.Encoding.utf8)!)
+        body.append("\(username)\r\n".data(using: String.Encoding.utf8, allowLossyConversion: true)!)
+        
+        body.append("--\(boundary)\r\n".data(using: String.Encoding.utf8)!)
+        body.append("Content-Disposition:form-data; name=\"profileImage\"; filename=\"\(fname)\"\r\n".data(using: String.Encoding.utf8)!)
+        body.append("Content-Type: \(mimetype)\r\n\r\n".data(using: String.Encoding.utf8)!)
+        body.append(profileData as Data)
+        body.append("\r\n".data(using: String.Encoding.utf8)!)
+        
+        
+        body.append("--\(boundary)--\r\n".data(using: String.Encoding.utf8)!)
+        
+        request.httpBody = body as Data
+        
+        let session = URLSession.shared
+        
+        
+        let task = session.uploadTask(with: request as URLRequest, from: body as Data) { (data, response, error) in
+            
+            let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            print("DATA STRING: \(dataString)")
+            
+            if data == nil {
+                completionBlock(false)
+                return
+            }
+            do {
+                if let jsonData = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
+                    
+                    if jsonData["Status"] as! String == "Success" {
+                        
+                        //self.profilePic = jsonData["NewURL"] as! String
                         
                         completionBlock(true)
                         

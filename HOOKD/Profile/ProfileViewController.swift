@@ -7,18 +7,23 @@
 //
 
 import UIKit
+import SKPhotoBrowser
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SKPhotoBrowserDelegate {
     
     @IBOutlet var profilePic : UIImageView!
     @IBOutlet var profileTV  : UITableView!
     @IBOutlet var usernameLabel : UILabel!
     @IBOutlet var navBar : UIView!
+    var picToUpload : UIImage?
     
-    var imageOperation = OperationQueue()
-    
+    var imageOperation      = OperationQueue()
+    var standardPhotoPicker = UIImagePickerController()
+   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         // Create a dictionary and add it to the array.
         UserManager.sharedManager.initProfileQuestions()
@@ -28,7 +33,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         profilePic.layer.borderColor   = UIColor.white.cgColor
         profilePic.layer.cornerRadius  = profilePic.frame.height/2
         profilePic.clipsToBounds       = true
-        
+                
         usernameLabel.text             = UserManager.sharedManager.username
         
         navBar.backgroundColor         = HOOKDNAV
@@ -60,6 +65,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         if(UserManager.sharedManager.visitedFromHome == false) {
             profilePic.image = UserManager.sharedManager.savedImage
+        }
+        
+        UserManager.sharedManager.getUserPictures(username: UserManager.sharedManager.username) { (done) in
+            if(done) {
+                print("GOT THE PICTURES!!!")
+            }
+            else {
+                print("WTf DIDNT WORK")
+            }
         }
     }
     
@@ -115,11 +129,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 print("CURRENT ANSWER: \(currentValue)")
                 
                 if currentValue == "yes" {
-                    questionCell.yesButton.backgroundColor = HOOKDRED
+                    questionCell.yesButton.setImage(UIImage.init(named: "HOOKDCheckmarkFilled.png"), for: .normal)
                 } else if currentValue == "no" {
-                    questionCell.noButton.backgroundColor = HOOKDRED
+                    questionCell.noButton.setImage(UIImage.init(named: "HOOKDXFilled.png"), for: .normal)
                 } else if currentValue == "maybe" {
-                    questionCell.maybeButton.backgroundColor = HOOKDRED
+                    questionCell.maybeButton.setImage(UIImage.init(named: "HOOKDUnknownFilled.png"), for: .normal)
                 }
             }
             
@@ -151,9 +165,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 print("CURRENT ANSWER: \(currentValue)")
                 
                 if currentValue == "yes"  {
-                    questionCell.yesButton.backgroundColor = HOOKDRED
+                    questionCell.yesButton.setImage(UIImage.init(named: "HOOKDCheckmarkFilled.png"), for: .normal)
                 } else if currentValue == "no" {
-                    questionCell.noButton.backgroundColor = HOOKDRED
+                    questionCell.noButton.setImage(UIImage.init(named: "HOOKDXFilled.png"), for: .normal)
                 }
             }
             
@@ -183,6 +197,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             else {
                 questionCell.mainQuestionAnswer.text = UserManager.sharedManager.arrayOfDict[indexPath.row]["answer"]
             }
+            
+            if UserManager.sharedManager.arrayOfDict[indexPath.row]["question_key"] != "about_me" {
+                questionCell.contentView.backgroundColor = UIColor.black
+            }
             questionCell.identifier    = indexPath.row
             return questionCell
         }
@@ -197,6 +215,34 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         return questionCell!
         
+    }
+    
+    func didDismissAtPageIndex(_ index: Int) {
+        // when PhotoBrowser did dismissed
+        UserManager.sharedManager.getUserPictures(username: UserManager.sharedManager.username) { (done) in
+            if(done) {
+                print("GOT THE PICTURES!!!")
+            }
+            else {
+                print("WTf DIDNT WORK")
+            }
+        }
+    }
+    
+    func removePhoto(_ browser: SKPhotoBrowser, index: Int, reload: @escaping (() -> Void)) {
+        print("SHOULD REMOVE...")
+        UserManager.sharedManager.removePicture(username: UserManager.sharedManager.username, picture: UserManager.sharedManager.imageStrings.object(at: index) as! String) { (done) in
+            if(done) {
+                print("Picture successfully removed.")
+                reload()
+            }
+            else {
+                
+                DispatchQueue.main.async {
+                    AlertManager.sharedManager.showError(title: "Oops", subTitle: "Could not remove photo. Try contacting support if this keeps happening.", buttonTitle: "Okay")
+                }
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -222,12 +268,67 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    @IBAction func showPics() {
+        
+        if(UserManager.sharedManager.images.count > 0) {
+            SKPhotoBrowserOptions.displayDeleteButton       = true
+            SKPhotoBrowserOptions.swapCloseAndDeleteButtons = true
+            
+            let browser = SKPhotoBrowser(photos: UserManager.sharedManager.images)
+            browser.initializePageIndex(0)
+            browser.delegate = self
+            self.present(browser, animated: true, completion: {})
+        }
+        else {
+            AlertManager.sharedManager.showError(title: "No Pictures", subTitle: "You have no pictures yet. Tap Add Photo to add your first photo.", buttonTitle: "Okay")
+        }
+    }
+    
+    @IBAction func addPhoto() {
+        
+        standardPhotoPicker = UIImagePickerController()
+        standardPhotoPicker.delegate      = self
+        standardPhotoPicker.sourceType    = .camera;
+        standardPhotoPicker.allowsEditing = false
+        
+        self.present(standardPhotoPicker, animated:true, completion:nil)
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        print("image retrieved")
-        picker.dismiss(animated: true, completion: nil)
-        self.profilePic.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        self.detect()
+        if(picker == standardPhotoPicker) {
+            print("image retrieved")
+            picker.dismiss(animated: true, completion: nil)
+            self.picToUpload = info[UIImagePickerControllerOriginalImage] as? UIImage
+            
+            UserManager.sharedManager.uploadStandardPicture(self.picToUpload, completionBlock: { (done) in
+                
+                if(done) {
+                    print("SUCCESS UPDATING THE PROFILE PICTURE!")
+                    UserManager.sharedManager.getUserPictures(username: UserManager.sharedManager.username) { (done) in
+                        if(done) {
+                            print("GOT THE PICTURES!!!")
+                        }
+                        else {
+                            print("WTf DIDNT WORK")
+                        }
+                    }
+                }
+                else {
+                    print("SOMETHING WENT WRONG UPDATING THE PROFILE PICTURE!")
+                }
+            })
+            //self.detectStandard()
+        }
+            
+        else {
+            print("image retrieved")
+            picker.dismiss(animated: true, completion: nil)
+            self.profilePic.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+            self.detect()
+        }
+        
+        
     }
     
     

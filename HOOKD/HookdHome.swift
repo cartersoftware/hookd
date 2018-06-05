@@ -24,8 +24,8 @@ class HookdHome: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.layoutMargins  = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero
         
-        navBar.backgroundColor = HOOKDNAV
-        actionButton.backgroundColor = HOOKDRED
+        navBar.backgroundColor = UIColor.black
+        actionButton.backgroundColor = UIColor.black
         // Do any additional setup after loading the view.
     }
 

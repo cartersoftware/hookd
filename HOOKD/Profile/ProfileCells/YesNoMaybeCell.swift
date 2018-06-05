@@ -22,9 +22,12 @@ class YesNoMaybeCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        noButton.backgroundColor     = grayButtonColor
-        maybeButton.backgroundColor  = grayButtonColor
-        yesButton.backgroundColor    = grayButtonColor
+        noButton.backgroundColor            = grayButtonColor
+        maybeButton.backgroundColor         = grayButtonColor
+        yesButton.backgroundColor           = grayButtonColor
+        noButton.imageView!.contentMode     = .scaleAspectFill
+        yesButton.imageView!.contentMode    = .scaleAspectFill
+        maybeButton.imageView!.contentMode  = .scaleAspectFill
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -35,27 +38,28 @@ class YesNoMaybeCell: UITableViewCell {
     
     @IBAction func hitYes() {
         print("HIT YES!  \(identifier)")
-        yesButton.backgroundColor   = HOOKDRED
-        noButton.backgroundColor    = grayButtonColor
-        maybeButton.backgroundColor = grayButtonColor
+        yesButton.setImage(UIImage.init(named: "HOOKDCheckmarkFilled.png"), for: .normal)
+        noButton.setImage(UIImage.init(named: "HOOKDXNotFilled.png"), for: .normal)
+        maybeButton.setImage(UIImage.init(named: "HOOKDUnknownNotFilled.png"), for: .normal)
+
         UserManager.sharedManager.arrayOfDict[identifier]["answer"] = "yes"
         print("\(UserManager.sharedManager.arrayOfDict)")
     }
     
     @IBAction func hitNo() {
         print("HIT NO!  \(identifier)")
-        noButton.backgroundColor     = HOOKDRED
-        yesButton.backgroundColor    = grayButtonColor
-        maybeButton.backgroundColor  = grayButtonColor
+        yesButton.setImage(UIImage.init(named: "HOOKDCheckmarkNotFilled.png"), for: .normal)
+        noButton.setImage(UIImage.init(named: "HOOKDXFilled.png"), for: .normal)
+        maybeButton.setImage(UIImage.init(named: "HOOKDUnknownNotFilled.png"), for: .normal)
         UserManager.sharedManager.arrayOfDict[identifier]["answer"] = "no"
         print("\(UserManager.sharedManager.arrayOfDict)")
     }
     
     @IBAction func hitMaybe() {
         print("HIT MAYBE  \(identifier)")
-        maybeButton.backgroundColor   = HOOKDRED
-        noButton.backgroundColor      = grayButtonColor
-        yesButton.backgroundColor     = grayButtonColor
+        yesButton.setImage(UIImage.init(named: "HOOKDCheckmarkNotFilled.png"), for: .normal)
+        noButton.setImage(UIImage.init(named: "HOOKDXNotFilled.png"), for: .normal)
+        maybeButton.setImage(UIImage.init(named: "HOOKDUnknownFilled.png"), for: .normal)
         UserManager.sharedManager.arrayOfDict[identifier]["answer"] = "maybe"
         print("\(UserManager.sharedManager.arrayOfDict)")
     }

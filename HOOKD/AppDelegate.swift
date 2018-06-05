@@ -8,13 +8,14 @@
 
 import UIKit
 
-let HOOKDAPI      = "http://hookd.info/API/V1/"
-let HOOKEDTERMS   = "http://hookd.info/terms.php"
-let HOOKEDPRIV    = "http://hookd.info/privacypolicy.php"
-let HOOKDRED      = UIColor(red: 200.0/255.0, green: 0.0/255.0, blue: 52.0/255.0, alpha: 1.0)
-let HOOKDNAV      = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0)
-let OURERROR      = "Something went wrong on our side.";
-let AMZPROFILES   = "https://s3-us-west-2.amazonaws.com/hookd/GRAPHICS/PROFILEPICS/"
+let HOOKDAPI        = "http://hookd.info/API/V1/"
+let HOOKEDTERMS     = "http://hookd.info/terms.php"
+let HOOKEDPRIV      = "http://hookd.info/privacypolicy.php"
+let HOOKDRED        = UIColor(red: 200.0/255.0, green: 0.0/255.0, blue: 52.0/255.0, alpha: 1.0)
+let HOOKDNAV        = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0)
+let OURERROR        = "Something went wrong on our side.";
+let AMZPROFILES     = "https://s3-us-west-2.amazonaws.com/hookd/GRAPHICS/PROFILEPICS/"
+let AMZSTANDARDPICS = "https://s3-us-west-2.amazonaws.com/hookd/GRAPHICS/STANDARDPICS/"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

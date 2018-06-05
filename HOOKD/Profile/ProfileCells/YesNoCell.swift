@@ -22,6 +22,10 @@ class YesNoCell: UITableViewCell {
         super.awakeFromNib()
         noButton.backgroundColor    = grayButtonColor
         yesButton.backgroundColor   = grayButtonColor
+        
+        noButton.imageView!.contentMode     = .scaleAspectFill
+        yesButton.imageView!.contentMode    = .scaleAspectFill
+        
         // Initialization code
     }
 
@@ -33,16 +37,16 @@ class YesNoCell: UITableViewCell {
     
     @IBAction func hitYes() {
         print("HIT YES! \(identifier)")
-        yesButton.backgroundColor   = HOOKDRED
-        noButton.backgroundColor    = grayButtonColor
+        yesButton.setImage(UIImage.init(named: "HOOKDCheckmarkFilled.png"), for: .normal)
+        noButton.setImage(UIImage.init(named: "HOOKDXNotFilled.png"), for: .normal)
         UserManager.sharedManager.arrayOfDict[identifier]["answer"] = "yes"
         print("\(UserManager.sharedManager.arrayOfDict)")
     }
     
     @IBAction func hitNo() {
         print("HIT NO! \(identifier)")
-        noButton.backgroundColor    = HOOKDRED
-        yesButton.backgroundColor   = grayButtonColor
+        yesButton.setImage(UIImage.init(named: "HOOKDCheckmarkNotFilled.png"), for: .normal)
+        noButton.setImage(UIImage.init(named: "HOOKDXFilled.png"), for: .normal)
         UserManager.sharedManager.arrayOfDict[identifier]["answer"] = "no"
         print("\(UserManager.sharedManager.arrayOfDict)")
     }

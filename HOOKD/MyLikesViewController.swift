@@ -20,8 +20,8 @@ class MyLikesViewController: UIViewController {
         profileImage.image = profileImage.image!.withRenderingMode(.alwaysTemplate)
         profileImage.tintColor = UIColor.white
         
-        navBar.backgroundColor = HOOKDNAV
-        actionButton.backgroundColor = HOOKDRED
+        navBar.backgroundColor = UIColor.black
+        actionButton.backgroundColor = UIColor.black
         // Do any additional setup after loading the view.
     }
 

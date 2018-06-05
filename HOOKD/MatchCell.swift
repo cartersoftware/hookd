@@ -17,10 +17,10 @@ class MatchCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        hookedStatus.image = hookedStatus.image!.withRenderingMode(.alwaysTemplate)
-        hookedStatus.backgroundColor = UIColor.white
-        hookedStatus.tintColor = HOOKDRED
-        hookedStatusLabel.textColor = HOOKDRED
+       // hookedStatus.image = hookedStatus.image!.withRenderingMode(.alwaysTemplate)
+        //hookedStatus.backgroundColor = UIColor.white
+        //hookedStatus.tintColor = HOOKDRED
+        //hookedStatusLabel.textColor = HOOKDRED
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
