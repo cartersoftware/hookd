@@ -8,10 +8,10 @@
 
 import UIKit
 
-class LandingPage: UIViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource, GotDeviceToken {
+class LandingPage: UIViewController, GotDeviceToken {
     
-    @IBOutlet var pageControl: UIPageControl!
-    @IBOutlet var scrollView: UIScrollView!
+    //@IBOutlet var pageControl: UIPageControl!
+    //@IBOutlet var scrollView: UIScrollView!
     @IBOutlet var signUpButton: UIButton!
     @IBOutlet var signInButton: UIButton!
 
@@ -28,12 +28,19 @@ class LandingPage: UIViewController, UIPageViewControllerDelegate, UIPageViewCon
         delegate.delegateToken = self
         
         // Do any additional setup after loading the view, typically from a nib.
-        setupScroller()
+        //setupScroller()
         
-        signUpButton.layer.cornerRadius = 5.0
-        signInButton.layer.cornerRadius = 5.0
+        signUpButton.layer.cornerRadius = 3.0
+        signInButton.layer.cornerRadius = 3.0
         
-        signUpButton.backgroundColor = HOOKDRED
+        signUpButton.layer.cornerRadius = 3.0
+        signUpButton.layer.borderColor = UIColor.white.cgColor
+        signUpButton.layer.borderWidth = 1.0
+        
+        signInButton.layer.cornerRadius = 3.0
+        signInButton.layer.borderColor = UIColor.white.cgColor
+        signInButton.layer.borderWidth = 1.0
+        
     }
     
     func gotToken() {
@@ -49,7 +56,7 @@ class LandingPage: UIViewController, UIPageViewControllerDelegate, UIPageViewCon
     
     func setupScroller() {
         
-        let page1                = self.storyboard!.instantiateViewController(withIdentifier: "swipePage1")
+       /* let page1                = self.storyboard!.instantiateViewController(withIdentifier: "swipePage1")
         let page2                = self.storyboard!.instantiateViewController(withIdentifier: "swipePage2")
         let page3                = self.storyboard!.instantiateViewController(withIdentifier: "swipePage3")
         
@@ -73,9 +80,10 @@ class LandingPage: UIViewController, UIPageViewControllerDelegate, UIPageViewCon
         scrollView.bringSubview(toFront: pageControl)
         
         pageControl.numberOfPages = pages.count
-        pageControl.currentPage   = 0
+        pageControl.currentPage   = 0*/
     }
 
+    /*
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let currentIndex = pages.index(of: viewController)!
         if currentIndex == 0 {
@@ -105,7 +113,7 @@ class LandingPage: UIViewController, UIPageViewControllerDelegate, UIPageViewCon
                 pageControl.currentPage = index
             }
         }
-    }
+    }*/
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

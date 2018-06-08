@@ -279,17 +279,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBAction func showPics() {
         
         if(UserManager.sharedManager.images.count > 0) {
-            SKPhotoBrowserOptions.displayDeleteButton       = true
-            SKPhotoBrowserOptions.swapCloseAndDeleteButtons = true
             
-            let browser = SKPhotoBrowser(photos: UserManager.sharedManager.images)
-            browser.initializePageIndex(0)
-            browser.delegate = self
-            self.present(browser, animated: true, completion: {})
+            let vc = self.storyboard!.instantiateViewController(withIdentifier: "photoscollection") as! PhotosCollectionViewController
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         else {
             AlertManager.sharedManager.showError(title: "No Pictures", subTitle: "You have no pictures yet. Tap Add Photo to add your first photo.", buttonTitle: "Okay")
         }
+        
     }
     
     @IBAction func addPhoto() {
