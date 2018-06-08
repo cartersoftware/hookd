@@ -18,6 +18,9 @@ class HookdHome: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        appDelegate?.registerForPushNotifications(application:UIApplication.shared)
+        
         profileImage.image = profileImage.image!.withRenderingMode(.alwaysTemplate)
         profileImage.tintColor = UIColor.white
         

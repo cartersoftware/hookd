@@ -31,9 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        self.registerForPushNotifications(application: application)
-
-        
         // Override point for customization after application launch.
         application.statusBarStyle = .lightContent // .default
         let navbarFont             = UIFont(name: "System", size: 17) ?? UIFont.systemFont(ofSize: 17)
