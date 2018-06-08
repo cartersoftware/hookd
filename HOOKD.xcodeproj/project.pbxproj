@@ -18,7 +18,9 @@
 		DB25733220AE73FE002D419D /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB25733120AE73FE002D419D /* QuestionViewController.swift */; };
 		DB857F6720A3E22C00532F3A /* TermsPrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB857F6620A3E22C00532F3A /* TermsPrivacyViewController.swift */; };
 		DB857F6920A8C93A00532F3A /* ProfilePictureWizard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB857F6820A8C93A00532F3A /* ProfilePictureWizard.swift */; };
+		DB932D7420C9B65800DBC18E /* ProfileParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB932D7320C9B65800DBC18E /* ProfileParentViewController.swift */; };
 		DBA868A720AA8CD00075BAC5 /* CLTypingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA868A620AA8CD00075BAC5 /* CLTypingLabel.swift */; };
+		DBC8DD9A20C9CFF50097AF83 /* ForgotUserPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC8DD9920C9CFF50097AF83 /* ForgotUserPassViewController.swift */; };
 		DBCD0988209D50C6007DE92E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCD0987209D50C6007DE92E /* AppDelegate.swift */; };
 		DBCD098A209D50C6007DE92E /* LandingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCD0989209D50C6007DE92E /* LandingPage.swift */; };
 		DBCD098D209D50C6007DE92E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBCD098B209D50C6007DE92E /* Main.storyboard */; };
@@ -73,7 +75,9 @@
 		DB25733120AE73FE002D419D /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		DB857F6620A3E22C00532F3A /* TermsPrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsPrivacyViewController.swift; sourceTree = "<group>"; };
 		DB857F6820A8C93A00532F3A /* ProfilePictureWizard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePictureWizard.swift; sourceTree = "<group>"; };
+		DB932D7320C9B65800DBC18E /* ProfileParentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileParentViewController.swift; sourceTree = "<group>"; };
 		DBA868A620AA8CD00075BAC5 /* CLTypingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLTypingLabel.swift; sourceTree = "<group>"; };
+		DBC8DD9920C9CFF50097AF83 /* ForgotUserPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotUserPassViewController.swift; sourceTree = "<group>"; };
 		DBCD0984209D50C6007DE92E /* HOOKD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HOOKD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBCD0987209D50C6007DE92E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBCD0989209D50C6007DE92E /* LandingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPage.swift; sourceTree = "<group>"; };
@@ -158,6 +162,7 @@
 				DB0FEFD320ACE522008C4458 /* ProfileCells */,
 				DB0FEFD020ACD4FA008C4458 /* ProfileViewController.swift */,
 				DB25733120AE73FE002D419D /* QuestionViewController.swift */,
+				DB932D7320C9B65800DBC18E /* ProfileParentViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -269,6 +274,7 @@
 				DBE7CA4B209E8C7700F28396 /* LoginViewController.swift */,
 				DBE7CA56209ED2B100F28396 /* ForgotUsername.swift */,
 				DBE7CA58209ED47600F28396 /* ForgotPassword.swift */,
+				DBC8DD9920C9CFF50097AF83 /* ForgotUserPassViewController.swift */,
 			);
 			path = LandingPages_SignUp_Register;
 			sourceTree = "<group>";
@@ -498,9 +504,11 @@
 				DB25733220AE73FE002D419D /* QuestionViewController.swift in Sources */,
 				DBE7CA53209EC3CE00F28396 /* MatchCell.swift in Sources */,
 				DB168C5720AEA085008C3BC9 /* VideoViewController.swift in Sources */,
+				DBC8DD9A20C9CFF50097AF83 /* ForgotUserPassViewController.swift in Sources */,
 				DB0FEFD520ACE533008C4458 /* YesNoMaybeCell.swift in Sources */,
 				DB0FEFD120ACD4FA008C4458 /* ProfileViewController.swift in Sources */,
 				DBA868A720AA8CD00075BAC5 /* CLTypingLabel.swift in Sources */,
+				DB932D7420C9B65800DBC18E /* ProfileParentViewController.swift in Sources */,
 				DBE7CA47209D921600F28396 /* UserManager.swift in Sources */,
 				DB0FEFD720ACE541008C4458 /* YesNoCell.swift in Sources */,
 				DBCD0988209D50C6007DE92E /* AppDelegate.swift in Sources */,

@@ -7,6 +7,11 @@
 //
 
 import UIKit
+import UserNotifications
+
+protocol GotDeviceToken {
+    func gotToken()
+}
 
 let HOOKDAPI        = "http://hookd.info/API/V1/"
 let HOOKEDTERMS     = "http://hookd.info/terms.php"
@@ -18,17 +23,47 @@ let AMZPROFILES     = "https://s3-us-west-2.amazonaws.com/hookd/GRAPHICS/PROFILE
 let AMZSTANDARDPICS = "https://s3-us-west-2.amazonaws.com/hookd/GRAPHICS/STANDARDPICS/"
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
+    var delegateToken:GotDeviceToken?
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        self.registerForPushNotifications(application: application)
+
+        
         // Override point for customization after application launch.
         application.statusBarStyle = .lightContent // .default
         let navbarFont             = UIFont(name: "System", size: 17) ?? UIFont.systemFont(ofSize: 17)
         
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: navbarFont, NSAttributedStringKey.foregroundColor:UIColor.white]
+        
+        if let username = UserDefaults.standard.object(forKey: "username") as? String {
             
+            let email      = UserDefaults.standard.object(forKey: "email") as? String
+            let profilePic = UserDefaults.standard.object(forKey: "profilePic") as? String
+            let userInfo   = UserDefaults.standard.object(forKey: "userInfo") as? NSDictionary
+
+            UserManager.sharedManager.username                  = username
+            UserManager.sharedManager.email                     = email!
+            UserManager.sharedManager.profilePic                = profilePic!
+            UserManager.sharedManager.userInfo                  = userInfo!
+
+            // Override point for customization after application launch.
+            let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let navigationController:UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
+            let parentVC = storyboard.instantiateViewController(withIdentifier: "hookdhome") as! HookdHome
+            navigationController.viewControllers = [parentVC]
+            self.window?.rootViewController = navigationController
+        
+            window?.makeKeyAndVisible()
+            
+            return true
+            
+        }
+    
         return true
     }
 
@@ -52,6 +87,57 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func registerForPushNotifications(application: UIApplication) {
+        
+        if #available(iOS 10.0, *){
+            
+            UNUserNotificationCenter.current().delegate = self
+            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .sound, .alert], completionHandler: {(granted, error) in
+                if (granted)
+                {
+                    DispatchQueue.main.async {
+                        application.registerForRemoteNotifications()
+                    }
+                    
+                }
+                else{
+                    //Do stuff if unsuccessful...
+                }
+            })
+        }
+            
+        else{ //If user is not on iOS 10 use the old methods we've been using
+            let notificationSettings = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil)
+            
+            application.registerUserNotificationSettings(notificationSettings)
+            
+            application.registerForRemoteNotifications()
+            
+        }
+        
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
+        print("SHOULD BE STORING THE TOKEN!!")
+        var token: String = ""
+        
+        for i in 0..<deviceToken.count {
+            token += String(format: "%02.2hhx", deviceToken[i] as CVarArg)
+        }
+        
+        UserManager.sharedManager.deviceToken = token
+        
+        delegateToken?.gotToken()
+        
+        if(UserManager.sharedManager.deviceToken != ""){
+            
+            UserDefaults.standard.set(UserManager.sharedManager.deviceToken, forKey: "deviceToken")
+            UserDefaults.standard.synchronize()
+            
+        }
     }
 
 

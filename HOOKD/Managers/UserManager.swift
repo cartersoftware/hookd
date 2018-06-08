@@ -27,9 +27,9 @@ class UserManager : NSObject {
     var visitedFromHome      = false
     var loadedProfileOnce    = false
     var imageStrings         = NSMutableArray()
+    var deviceToken          = "";
     
     var images = [SKPhoto]()
-    
     
     class var sharedManager : UserManager {
         struct _Singleton {
@@ -112,6 +112,38 @@ class UserManager : NSObject {
         }.resume()
     }
     
+    func updateDeviceToken(_ username:String,deviceToken:String, completionBlock:@escaping (_ success:Bool) -> Void) {
+        
+        var urlRequest        = URLRequest(url: URL(string:HOOKDAPI + "UpdateDeviceToken.php?")!)
+        
+        urlRequest.httpMethod = "POST"
+        urlRequest.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        
+        //let localTimeZoneName =  TimeZone.current.identifier
+        urlRequest.httpBody   = "username=\(username)&deviceToken=\(deviceToken)".data(using: .utf8)
+        
+        URLSession.shared.dataTask(with: urlRequest) { (serverData, serverResponse, serverError) in
+
+            if serverError == nil && serverData != nil {
+                
+                let data = String.init(data: serverData!, encoding: .utf8)
+                
+                if let jsonObject = try? JSONSerialization.jsonObject(with: serverData!, options: []) as? NSDictionary{
+                    if(jsonObject?.object(forKey: "Status") as? String == "Success") {
+                        completionBlock(true)
+                    }
+                    else {
+                        completionBlock(false)
+                    }
+                } else {
+                    completionBlock(false)
+                }
+            } else {
+                completionBlock(false)
+            }
+        }
+    }
+    
     func authenticateUser(_ username:String,password:String, completionBlock:@escaping (_ success:Bool, _ errormsg:String) -> Void) {
         
         var urlRequest = URLRequest(url: URL(string:HOOKDAPI + "Login.php")!)
@@ -132,12 +164,29 @@ class UserManager : NSObject {
                     if(jsonObject?.object(forKey: "Status") as? String == "Success") {
                         
                         if let userData = jsonObject?.object(forKey:"UserData") as? NSDictionary {
+                            
                             self.userInfo   = userData
                             self.username   = (userData.object(forKey: "username") as? String)!
                             self.profilePic = (userData.object(forKey: "profilePic") as? String)!
                             
+                            // save necessary variables to local defaults
+                            for allKeys in self.userInfo.allKeys {
+                                
+                                let key   = allKeys as! String
+                                let value = self.userInfo[key] as! String
+                                
+                                UserDefaults.standard.set(value, forKey: key)
+                                // Save the defaults
+                                UserDefaults.standard.synchronize()
+                            }
+                            
+                            UserDefaults.standard.set(self.userInfo, forKey: "userInfo")
+                            UserDefaults.standard.synchronize()
+
+                            
                             print("USER DATA: \(self.userInfo)")
                             completionBlock(true,"")
+                            
                         } else {
                             completionBlock(false, "Login successful, however, unable to retrieve profile information")
                         }

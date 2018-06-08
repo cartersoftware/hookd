@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LandingPage: UIViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+class LandingPage: UIViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource, GotDeviceToken {
     
     @IBOutlet var pageControl: UIPageControl!
     @IBOutlet var scrollView: UIScrollView!
@@ -24,6 +24,9 @@ class LandingPage: UIViewController, UIPageViewControllerDelegate, UIPageViewCon
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        delegate.delegateToken = self
+        
         // Do any additional setup after loading the view, typically from a nib.
         setupScroller()
         
@@ -31,6 +34,13 @@ class LandingPage: UIViewController, UIPageViewControllerDelegate, UIPageViewCon
         signInButton.layer.cornerRadius = 5.0
         
         signUpButton.backgroundColor = HOOKDRED
+    }
+    
+    func gotToken() {
+        
+        UserManager.sharedManager.updateDeviceToken(UserManager.sharedManager.username, deviceToken: UserManager.sharedManager.deviceToken) { (done) in
+            print("SHOULD BE STORING THE TOKEN!!")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

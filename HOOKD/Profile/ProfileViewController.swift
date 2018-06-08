@@ -15,6 +15,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet var profileTV  : UITableView!
     @IBOutlet var usernameLabel : UILabel!
     @IBOutlet var navBar : UIView!
+    
     var picToUpload : UIImage?
     
     var imageOperation      = OperationQueue()
@@ -23,8 +24,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
+    
         // Create a dictionary and add it to the array.
         UserManager.sharedManager.initProfileQuestions()
         
@@ -35,7 +35,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         profilePic.clipsToBounds       = true
                 
         usernameLabel.text             = UserManager.sharedManager.username
-        
+
         navBar.backgroundColor         = HOOKDNAV
         
         // Do any additional setup after loading the view.
@@ -148,12 +148,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             questionCell.question.text = UserManager.sharedManager.arrayOfDict[indexPath.row]["question"]
             questionCell.identifier    = indexPath.row
             
-            if(customIdentifer2 == "pets")
-            {
-                questionCell.yesButton.setTitle("Dog", for: .normal);
-                questionCell.noButton.setTitle("Cat", for: .normal);
-            }
-            
             if UserManager.sharedManager.arrayOfDict[indexPath.row]["answer"] == "na" {
                 
                 UserManager.sharedManager.arrayOfDict[indexPath.row]["answer"] = UserManager.sharedManager.userInfo[UserManager.sharedManager.arrayOfDict[indexPath.row]["question_key"] ?? "na"] as? String
@@ -165,9 +159,23 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 print("CURRENT ANSWER: \(currentValue)")
                 
                 if currentValue == "yes"  {
-                    questionCell.yesButton.setImage(UIImage.init(named: "HOOKDCheckmarkFilled.png"), for: .normal)
+                    if(customIdentifer2 == "pets")
+                    {
+                        questionCell.yesButton.setImage(UIImage.init(named: "HOOKDDogFilled.png"), for: .normal)
+                        questionCell.noButton.setImage(UIImage.init(named: "HOOKDCatNotFilled.png"), for: .normal)
+                    }
+                    else {
+                        questionCell.yesButton.setImage(UIImage.init(named: "HOOKDCheckmarkFilled.png"), for: .normal)
+                    }
                 } else if currentValue == "no" {
-                    questionCell.noButton.setImage(UIImage.init(named: "HOOKDXFilled.png"), for: .normal)
+                    if(customIdentifer2 == "pets")
+                    {
+                        questionCell.yesButton.setImage(UIImage.init(named: "HOOKDDogNotFilled.png"), for: .normal)
+                        questionCell.noButton.setImage(UIImage.init(named: "HOOKDCatFilled.png"), for: .normal)
+                    }
+                    else {
+                        questionCell.noButton.setImage(UIImage.init(named: "HOOKDXFilled.png"), for: .normal)
+                    }
                 }
             }
             

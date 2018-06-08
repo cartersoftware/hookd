@@ -29,6 +29,7 @@ class HookdHome: UIViewController, UITableViewDelegate, UITableViewDataSource {
         // Do any additional setup after loading the view.
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -43,11 +44,12 @@ class HookdHome: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "likes") as! MyLikesViewController
         self.navigationController?.pushViewController(vc, animated: false)
     }
-
+    
     @IBAction func gotoProfile() {
-        let vc = self.storyboard!.instantiateViewController(withIdentifier: "profile") as! ProfileViewController
+        print("CLICKING WTF")
+        
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "profileParent") as! ProfileParentViewController
         self.navigationController?.pushViewController(vc, animated: true)
-        UserManager.sharedManager.visitedFromHome = true
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

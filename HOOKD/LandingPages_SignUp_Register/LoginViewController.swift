@@ -17,9 +17,10 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loginButton.layer.cornerRadius = 5.0
-        
-        loginButton.backgroundColor = HOOKDRED
+        loginButton.layer.borderWidth = 1.0
+        loginButton.layer.borderColor = UIColor.white.cgColor
+        loginButton.layer.cornerRadius = 3.0
+        loginButton.backgroundColor   = UIColor.black
         // Do any additional setup after loading the view.
     }
 
@@ -37,6 +38,13 @@ class LoginViewController: UIViewController {
             UserManager.sharedManager.authenticateUser(self.username.text!, password: self.password.text!) { (done, errormsg) in
                 if(done) {
                     DispatchQueue.main.async {
+                        
+                        if(UserManager.sharedManager.deviceToken != "") {
+                            UserManager.sharedManager.updateDeviceToken(UserManager.sharedManager.username, deviceToken: UserManager.sharedManager.deviceToken) { (done) in
+                                print("SHOULD BE STORING THE TOKEN!!")
+                            }
+                        }
+                        
                         let vc = self.storyboard!.instantiateViewController(withIdentifier: "hookdhome") as! HookdHome
                         //let vc = self.storyboard!.instantiateViewController(withIdentifier: "video") as! VideoViewController
                         self.navigationController?.pushViewController(vc, animated: true)
@@ -52,19 +60,40 @@ class LoginViewController: UIViewController {
         }
     }
     
+    @IBAction func hitUsername() {
+        print("HIT USERNAME!!!")
+        if self.username.text == "username" {
+            self.username.text = ""
+        }
+    }
+    
+    @IBAction func userNameEditingEnded() {
+        if (self.username.text?.count)! < 1 {
+            self.username.text = "username"
+        }
+    }
+    
+    @IBAction func hitPassword() {
+        if self.password.text == "password" {
+            self.password.text = ""
+        }
+    }
+    
+    @IBAction func passwordDidEndEditing() {
+        if (self.password.text?.count)! < 1 {
+            self.password.text = "password"
+        }
+    }
+    
     @IBAction func goBack() {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func forgotUser() {
-        let vc = self.storyboard!.instantiateViewController(withIdentifier: "forgotuser") as! ForgotUsername
+    @IBAction func forgotUserPass() {
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "forgotuserpass") as! ForgotUserPassViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    @IBAction func forgotPass() {
-        let vc = self.storyboard!.instantiateViewController(withIdentifier: "forgotpass") as! ForgotPassword
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
+
     
 
     /*

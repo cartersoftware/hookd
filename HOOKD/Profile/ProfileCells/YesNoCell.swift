@@ -37,16 +37,30 @@ class YesNoCell: UITableViewCell {
     
     @IBAction func hitYes() {
         print("HIT YES! \(identifier)")
-        yesButton.setImage(UIImage.init(named: "HOOKDCheckmarkFilled.png"), for: .normal)
-        noButton.setImage(UIImage.init(named: "HOOKDXNotFilled.png"), for: .normal)
+        
+        if(UserManager.sharedManager.arrayOfDict[identifier]["question_key"] == "pets") {
+            yesButton.setImage(UIImage.init(named: "HOOKDDogFilled.png"), for: .normal)
+            noButton.setImage(UIImage.init(named: "HOOKDCatNotFilled.png"), for: .normal)
+        }
+        else {
+            yesButton.setImage(UIImage.init(named: "HOOKDCheckmarkFilled.png"), for: .normal)
+            noButton.setImage(UIImage.init(named: "HOOKDXNotFilled.png"), for: .normal)
+        }
+        
         UserManager.sharedManager.arrayOfDict[identifier]["answer"] = "yes"
         print("\(UserManager.sharedManager.arrayOfDict)")
     }
     
     @IBAction func hitNo() {
         print("HIT NO! \(identifier)")
-        yesButton.setImage(UIImage.init(named: "HOOKDCheckmarkNotFilled.png"), for: .normal)
-        noButton.setImage(UIImage.init(named: "HOOKDXFilled.png"), for: .normal)
+        if(UserManager.sharedManager.arrayOfDict[identifier]["question_key"] == "pets") {
+            yesButton.setImage(UIImage.init(named: "HOOKDDogNotFilled.png"), for: .normal)
+            noButton.setImage(UIImage.init(named: "HOOKDCatFilled.png"), for: .normal)
+        }
+        else {
+            yesButton.setImage(UIImage.init(named: "HOOKDCheckmarkNotFilled.png"), for: .normal)
+            noButton.setImage(UIImage.init(named: "HOOKDXFilled.png"), for: .normal)
+        }
         UserManager.sharedManager.arrayOfDict[identifier]["answer"] = "no"
         print("\(UserManager.sharedManager.arrayOfDict)")
     }
