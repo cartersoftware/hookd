@@ -50,5 +50,7 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>HOOKD would like to access your location while you are using the application.</string>
 </dict>
 </plist>

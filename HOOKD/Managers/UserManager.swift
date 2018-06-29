@@ -11,10 +11,9 @@ import SKPhotoBrowser
 
 class UserManager : NSObject {
     
-    var username             = "";
-    var email                = "";
-    var gender               = "";
-    var profilePic           = "";
+    var username             = ""
+    var email                = ""
+    var profilePic           = ""
     
     var savedImage           = UIImage()
     
@@ -27,7 +26,21 @@ class UserManager : NSObject {
     var visitedFromHome      = false
     var loadedProfileOnce    = false
     var imageStrings         = NSMutableArray()
-    var deviceToken          = "";
+    var matches              = NSArray()
+
+    var accountSettings      = NSDictionary()
+
+    var deviceToken          = ""
+    
+    /*The preferences*/
+    var gender               = ""
+    var lookingfor           = ""
+    var notifications        = ""
+    var appsounds            = ""
+    var age                  = ""
+    var searchradius         = ""
+    var cameFromWizard       = true;
+    var shouldReloadMatches  = false;
     
     var images = [SKPhoto]()
     
@@ -79,13 +92,13 @@ class UserManager : NSObject {
         return -1
     }
     
-    func registerUser(_ username:String,password:String,email:String,gender:String,seeking:String, completionBlock:@escaping (_ success:Bool, _ errormsg:String) -> Void) {
+    func registerUser(_ username:String,password:String,email:String,firstName:String, completionBlock:@escaping (_ success:Bool, _ errormsg:String) -> Void) {
         
         var urlRequest = URLRequest(url: URL(string:HOOKDAPI + "RegisterUser.php")!)
         
         urlRequest.httpMethod = "POST"
         urlRequest.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        urlRequest.httpBody = "username=\(username)&password=\(password)&email=\(email)&gender=\(gender)&seeking=\(seeking)".data(using: .utf8)
+        urlRequest.httpBody = "username=\(username)&password=\(password)&email=\(email)&firstName=\(firstName)".data(using: .utf8)
         
         URLSession.shared.dataTask(with: urlRequest) { (serverData, serverResponse, serverError) in
             
@@ -110,6 +123,144 @@ class UserManager : NSObject {
             }
             
         }.resume()
+    }
+    
+    func updateAccountSettings(_ username:String,gender:String,seeking:String,notifications:String,appsounds:String,age:String,searchRadius:String, completionBlock:@escaping (_ success:Bool, _ errormsg:String) -> Void) {
+        
+        var urlRequest = URLRequest(url: URL(string:HOOKDAPI + "UpdateAccountSettings.php?")!)
+        
+        urlRequest.httpMethod = "POST"
+        urlRequest.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = "username=\(username)&gender=\(gender)&seeking=\(seeking)&notifications=\(notifications)&appsounds=\(appsounds)&age=\(age)&searchRadius=\(searchRadius)".data(using: .utf8)
+        
+        URLSession.shared.dataTask(with: urlRequest) { (serverData, serverResponse, serverError) in
+            
+            if serverError == nil && serverData != nil {
+                
+                let data = String.init(data: serverData!, encoding: .utf8)
+                print(data)
+                
+                if let jsonObject = try? JSONSerialization.jsonObject(with: serverData!, options: []) as? NSDictionary {
+                    
+                    if(jsonObject?.object(forKey: "Status") as? String == "Success") {
+                        completionBlock(true,"")
+                    }
+                    else {
+                        completionBlock(false, (jsonObject?.object(forKey: "Message") as? String)!)
+                    }
+                } else {
+                    completionBlock(false, OURERROR)
+                }
+            } else {
+                completionBlock(false, OURERROR)
+            }
+            
+            }.resume()
+    }
+    
+    func hideAccount(_ username:String, status:String, completionBlock:@escaping (_ success:Bool, _ errormsg:String) -> Void) {
+        
+        var urlRequest = URLRequest(url: URL(string:HOOKDAPI + "HideAccount.php?")!)
+        
+        urlRequest.httpMethod = "POST"
+        urlRequest.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = "username=\(username)&status=\(status)".data(using: .utf8)
+        
+        URLSession.shared.dataTask(with: urlRequest) { (serverData, serverResponse, serverError) in
+            
+            if serverError == nil && serverData != nil {
+                
+                let data = String.init(data: serverData!, encoding: .utf8)
+                print(data)
+                
+                if let jsonObject = try? JSONSerialization.jsonObject(with: serverData!, options: []) as? NSDictionary {
+                    
+                    if(jsonObject?.object(forKey: "Status") as? String == "Success") {
+                        completionBlock(true,"")
+                    }
+                    else {
+                        completionBlock(false, (jsonObject?.object(forKey: "Message") as? String)!)
+                    }
+                } else {
+                    completionBlock(false, OURERROR)
+                }
+            } else {
+                completionBlock(false, OURERROR)
+            }
+            
+            }.resume()
+    }
+    
+    func deleteAccount(_ username:String, completionBlock:@escaping (_ success:Bool, _ errormsg:String) -> Void) {
+        
+        var urlRequest = URLRequest(url: URL(string:HOOKDAPI + "DeleteAccount.php?")!)
+        
+        urlRequest.httpMethod = "POST"
+        urlRequest.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = "username=\(username)".data(using: .utf8)
+        
+        URLSession.shared.dataTask(with: urlRequest) { (serverData, serverResponse, serverError) in
+            
+            if serverError == nil && serverData != nil {
+                
+                let data = String.init(data: serverData!, encoding: .utf8)
+                print(data)
+                
+                if let jsonObject = try? JSONSerialization.jsonObject(with: serverData!, options: []) as? NSDictionary {
+                    
+                    if(jsonObject?.object(forKey: "Status") as? String == "Success") {
+                        completionBlock(true,"")
+                    }
+                    else {
+                        completionBlock(false, (jsonObject?.object(forKey: "Message") as? String)!)
+                    }
+                } else {
+                    completionBlock(false, OURERROR)
+                }
+            } else {
+                completionBlock(false, OURERROR)
+            }
+            
+            }.resume()
+    }
+    
+    func getAccountSettings(_ username:String, completionBlock:@escaping (_ success:Bool, _ errormsg:String) -> Void) {
+        
+        var urlRequest = URLRequest(url: URL(string:HOOKDAPI + "GetAccountSettings.php?")!)
+        
+        urlRequest.httpMethod = "POST"
+        urlRequest.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = "username=\(username)".data(using: .utf8)
+        
+        URLSession.shared.dataTask(with: urlRequest) { (serverData, serverResponse, serverError) in
+            
+            if serverError == nil && serverData != nil {
+                
+                let data = String.init(data: serverData!, encoding: .utf8)
+                print(data)
+                
+                if let jsonObject = try? JSONSerialization.jsonObject(with: serverData!, options: []) as? NSDictionary {
+                    
+                    if(jsonObject?.object(forKey: "Status") as? String == "Success") {
+                        if((jsonObject?.object(forKey:"Data") as? NSDictionary) != nil) {
+                            self.accountSettings = jsonObject?.object(forKey:"Data") as! NSDictionary
+                            completionBlock(true,"")
+                        }
+                        else {
+                            completionBlock(false, (jsonObject?.object(forKey: "Message") as? String)!)
+                        }
+                    }
+                    else {
+                        completionBlock(false, (jsonObject?.object(forKey: "Message") as? String)!)
+                    }
+                } else {
+                    completionBlock(false, OURERROR)
+                }
+            } else {
+                completionBlock(false, OURERROR)
+            }
+            
+            }.resume()
     }
     
     func updateDeviceToken(_ username:String,deviceToken:String, completionBlock:@escaping (_ success:Bool) -> Void) {
@@ -142,6 +293,78 @@ class UserManager : NSObject {
                 completionBlock(false)
             }
         }
+    }
+    
+    func getMatches(_ username:String, completionBlock:@escaping (_ success:Bool, _ errormsg:String) -> Void) {
+        
+        var urlRequest = URLRequest(url: URL(string:HOOKDAPI + "GetMatches.php?")!)
+        
+        urlRequest.httpMethod = "POST"
+        urlRequest.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = "username=\(username)".data(using: .utf8)
+        
+        URLSession.shared.dataTask(with: urlRequest) { (serverData, serverResponse, serverError) in
+            
+            if serverError == nil && serverData != nil {
+                
+                let data = String.init(data: serverData!, encoding: .utf8)
+                print("THE DATA: \(data)")
+                
+                if let jsonObject = try? JSONSerialization.jsonObject(with: serverData!, options: []) as? NSDictionary {
+                    
+                    if(jsonObject?.object(forKey: "Status") as? String == "Success") {
+                        if let matchArr = jsonObject?.object(forKey:"Data") as? NSArray {
+                            self.matches = matchArr
+                            completionBlock(true,"")
+                        }
+                        else {
+                            completionBlock(false,"No data. Contact Support.")
+                        }
+                    }
+                    else {
+                        completionBlock(false, (jsonObject?.object(forKey: "Message") as? String)!)
+                    }
+                } else {
+                    completionBlock(false, OURERROR)
+                }
+            } else {
+                completionBlock(false, OURERROR)
+            }
+            
+            }.resume()
+    }
+    
+    func updateLocation(_ username:String,latitude:String,longitude:String, completionBlock:@escaping (_ success:Bool, _ errormsg:String) -> Void) {
+        
+        var urlRequest = URLRequest(url: URL(string:HOOKDAPI + "UpdateLatLon.php?")!)
+        
+        urlRequest.httpMethod = "POST"
+        urlRequest.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = "username=\(username)&latitude=\(latitude)&longitude=\(longitude)".data(using: .utf8)
+        
+        URLSession.shared.dataTask(with: urlRequest) { (serverData, serverResponse, serverError) in
+            
+            if serverError == nil && serverData != nil {
+                
+                let data = String.init(data: serverData!, encoding: .utf8)
+                print(data)
+                
+                if let jsonObject = try? JSONSerialization.jsonObject(with: serverData!, options: []) as? NSDictionary {
+                    
+                    if(jsonObject?.object(forKey: "Status") as? String == "Success") {
+                        completionBlock(true,"")
+                    }
+                    else {
+                        completionBlock(false, (jsonObject?.object(forKey: "Message") as? String)!)
+                    }
+                } else {
+                    completionBlock(false, OURERROR)
+                }
+            } else {
+                completionBlock(false, OURERROR)
+            }
+            
+            }.resume()
     }
     
     func authenticateUser(_ username:String,password:String, completionBlock:@escaping (_ success:Bool, _ errormsg:String) -> Void) {

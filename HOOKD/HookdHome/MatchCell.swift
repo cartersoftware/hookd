@@ -10,9 +10,11 @@ import UIKit
 
 class MatchCell: UITableViewCell {
 
-    @IBOutlet var hookedStatus : UIImageView!
-    @IBOutlet var hookedStatusLabel : UILabel!
-    
+    @IBOutlet var mainImage : UIImageView!
+    @IBOutlet var name : UILabel!
+    @IBOutlet var age : UILabel!
+    @IBOutlet var desc : UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

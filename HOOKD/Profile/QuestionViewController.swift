@@ -24,8 +24,8 @@ class QuestionViewController: UIViewController, UITextViewDelegate {
         
         answer.delegate = self
         
-        doneButton.backgroundColor = HOOKDRED
-        navBar.backgroundColor     = HOOKDNAV
+        //doneButton.backgroundColor = HOOKDRED
+        //navBar.backgroundColor     = HOOKDNAV
         
         // Do any additional setup after loading the view.
     }

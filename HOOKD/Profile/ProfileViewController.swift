@@ -45,7 +45,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             print("NEW URL: \(UserManager.sharedManager.profilePic)")
             profilePic.image = UserManager.sharedManager.savedImage
-            loadProfilePic()
+            //loadProfilePic()
         }
         else {
             profilePic.image = UserManager.sharedManager.savedImage
@@ -291,12 +291,38 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBAction func addPhoto() {
         
-        standardPhotoPicker = UIImagePickerController()
-        standardPhotoPicker.delegate      = self
-        standardPhotoPicker.sourceType    = .camera;
-        standardPhotoPicker.allowsEditing = false
+        let alertController = UIAlertController(title: "Add Photo", message: "Where would you like to add a photo from?", preferredStyle: .actionSheet)
         
-        self.present(standardPhotoPicker, animated:true, completion:nil)
+        let sendButton = UIAlertAction(title: "Camera", style: .default, handler: { (action) -> Void in
+            self.standardPhotoPicker = UIImagePickerController()
+            self.standardPhotoPicker.delegate      = self
+            self.standardPhotoPicker.sourceType    = .camera
+            self.standardPhotoPicker.allowsEditing = false
+            
+            self.present(self.standardPhotoPicker, animated:true, completion:nil)
+        })
+        
+        let  deleteButton = UIAlertAction(title: "Photo Album", style: .default, handler: { (action) -> Void in
+            self.standardPhotoPicker = UIImagePickerController()
+            self.standardPhotoPicker.delegate      = self
+            self.standardPhotoPicker.sourceType    = .photoLibrary
+            self.standardPhotoPicker.allowsEditing = false
+            
+            self.present(self.standardPhotoPicker, animated:true, completion:nil)
+        })
+        
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in
+            print("Cancel button tapped")
+        })
+        
+        
+        alertController.addAction(sendButton)
+        alertController.addAction(deleteButton)
+        alertController.addAction(cancelButton)
+        
+        self.navigationController!.present(alertController, animated: true, completion: nil)
+        
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -412,51 +438,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             } ?? []
     }
     
-    func loadProfilePic() {
-        
-        self.imageOperation.addOperation({
-            
-            let fullPath  = AMZPROFILES + UserManager.sharedManager.profilePic
-            
-            let url       = URL(string:fullPath)
-            let imageData = try? Data.init(contentsOf: url!)
-            
-            if(imageData != nil)
-            {
-                let img = UIImage(data: imageData!)
-                
-                if img == nil {
-                    
-                    let img = UIImage(named:"personAvatar.png")
-                    
-                    UserManager.sharedManager.cachedImages[fullPath] = img
-                    OperationQueue.main.addOperation({
-                        self.profilePic.image = img
-                    })
-                    
-                }
-                else
-                {
-                    UserManager.sharedManager.cachedImages[fullPath] = img
-                    
-                    OperationQueue.main.addOperation({
-                        self.profilePic.image = img
-                    })
-                }
-            }
-            else {
-                let img = UIImage(named:"personAvatar.png")
-                
-                UserManager.sharedManager.cachedImages[fullPath] = img
-                
-                OperationQueue.main.addOperation({
-                    self.profilePic.image = img
-                })
-            }
-            
-        });
-    }
-    
+
     @IBAction func saveProfile() {
         
         if(UserManager.sharedManager.visitedFromHome == false) {
@@ -494,7 +476,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.navigationController?.popViewController(animated: true)
             }
             else {
-                let vc = self.storyboard!.instantiateViewController(withIdentifier: "hookdhome") as! HookdHome
+                
+                let vc = self.storyboard!.instantiateViewController(withIdentifier: "prefs") as! PreferencesViewController
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }

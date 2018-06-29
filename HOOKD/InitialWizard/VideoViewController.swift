@@ -22,7 +22,7 @@ class VideoViewController: UIViewController {
         continueButton.alpha = 0.0
         instructionLabel.alpha = 0.0
         
-        continueButton.backgroundColor = HOOKDRED
+       // continueButton.backgroundColor = HOOKDRED
 
         if let path = Bundle.main.path(forResource: "video", ofType: "mp4")
         {

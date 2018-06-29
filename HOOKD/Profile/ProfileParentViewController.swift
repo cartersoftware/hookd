@@ -41,7 +41,8 @@ class ProfileParentViewController: UIViewController {
         
         usersName.text                     = UserManager.sharedManager.username
 
-        loadProfilePic()
+        profilePicture.image = UserManager.sharedManager.savedImage
+        //loadProfilePic()
 
         
         // Do any additional setup after loading the view.
@@ -60,6 +61,18 @@ class ProfileParentViewController: UIViewController {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "profile") as! ProfileViewController
         self.navigationController?.pushViewController(vc, animated: true)
         UserManager.sharedManager.visitedFromHome = true
+    }
+    
+    @IBAction func gotoPreferences() {
+        
+        UserManager.sharedManager.cameFromWizard  = false;
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "prefs") as! PreferencesViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func gotoAccount() {
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "useraccount") as! AccountViewController
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func doneButton() {

@@ -8,19 +8,24 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var maleButton : UIButton!
     @IBOutlet var femaleButton : UIButton!
     @IBOutlet var signUpButton : UIButton!
     @IBOutlet var emailAddressTextField : UITextField!
     @IBOutlet var usernameTextField : UITextField!
+    @IBOutlet var firstNameTextField : UITextField!
     @IBOutlet var passwordTextField : UITextField!
     @IBOutlet var seekingFemaleButton : UIButton!
     @IBOutlet var seekingMaleButton : UIButton!
-    
-    var gender        = ""
-    var seekinggender = ""
+    @IBOutlet var firstNameCheckMark : UIImageView!
+    @IBOutlet var usernameCheckMark : UIImageView!
+    @IBOutlet var passwordCheckMark : UIImageView!
+    @IBOutlet var emailCheckMark : UIImageView!
+
+    var gender              = ""
+    var seekinggender       = ""
     var seekinggendermale   = "false"
     var seekinggenderfemale = "false"
 
@@ -42,7 +47,22 @@ class SignUpViewController: UIViewController {
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: navbarFont, NSAttributedStringKey.foregroundColor:UIColor.white]
 
         signUpButton.layer.cornerRadius = 5.0
-        signUpButton.backgroundColor = HOOKDRED
+        signUpButton.layer.borderWidth  = 1.0
+        signUpButton.layer.borderColor  = UIColor.white.cgColor
+        
+        firstNameCheckMark.alpha = 0
+        usernameCheckMark.alpha  = 0
+        passwordCheckMark.alpha  = 0
+        emailCheckMark.alpha     = 0
+        
+        usernameTextField.delegate = self
+        passwordTextField.delegate = self
+        emailAddressTextField.delegate = self
+        firstNameTextField.delegate = self
+        
+        //This is for the preferencesviewcontroller.
+        UserManager.sharedManager.cameFromWizard = true
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,6 +72,48 @@ class SignUpViewController: UIViewController {
 
     }
 
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let textFieldText: NSString = (textField.text ?? "") as NSString
+        let txtAfterUpdate = textFieldText.replacingCharacters(in: range, with: string)
+
+        if(textField == firstNameTextField) {
+            if((firstNameTextField!.text?.count)! > 2) {
+                //Let's show the image
+                firstNameCheckMark.alpha = 1
+            }
+            else {
+                firstNameCheckMark.alpha = 0
+            }
+        }
+        if(textField == usernameTextField) {
+            if((usernameTextField!.text?.count)! > 2) {
+                //Let's show the image
+                usernameCheckMark.alpha = 1
+            }
+            else {
+                usernameCheckMark.alpha = 0
+            }
+        }
+        if(textField == passwordTextField) {
+            if((passwordTextField!.text?.count)! > 2) {
+                //Let's show the image
+                passwordCheckMark.alpha = 1
+            }
+            else {
+                passwordCheckMark.alpha = 0
+            }
+        }
+        if(textField == emailAddressTextField) {
+            if((emailAddressTextField!.text?.count)! > 2) {
+                //Let's show the image
+                emailCheckMark.alpha = 1
+            }
+            else {
+                emailCheckMark.alpha = 0
+            }
+        }
+        return true
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -122,7 +184,7 @@ class SignUpViewController: UIViewController {
     
     @IBAction func signUp() {
         
-        UserManager.sharedManager.registerUser(usernameTextField.text!, password: passwordTextField.text!, email: emailAddressTextField.text!, gender: gender, seeking:seekinggender) { (done, errormsg) in
+        UserManager.sharedManager.registerUser(usernameTextField.text!, password: passwordTextField.text!, email: emailAddressTextField.text!, firstName: firstNameTextField.text!) { (done, errormsg) in
             if(done) {
                 DispatchQueue.main.async {
                     let vc = self.storyboard!.instantiateViewController(withIdentifier: "video") as! VideoViewController

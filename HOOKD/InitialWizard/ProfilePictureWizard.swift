@@ -28,15 +28,17 @@ class ProfilePictureWizard: UIViewController, UIImagePickerControllerDelegate, U
         analyzeLabel.alpha    = 0.0
         saveAndContinue.alpha = 0.0
         
-        savedImageView.alpha = 0.0
+        savedImageView.alpha  = 0.0
         savedImageView.layer.borderWidth   = 1
         savedImageView.layer.masksToBounds = false
         savedImageView.layer.borderColor   = UIColor.white.cgColor
         savedImageView.layer.cornerRadius  = savedImageView.frame.height/2
         savedImageView.clipsToBounds       = true
         
-        uploadProfilePicButton.backgroundColor = HOOKDRED
-        saveAndContinue.backgroundColor = HOOKDRED
+        
+        uploadProfilePicButton.layer.borderWidth = 1.0
+        uploadProfilePicButton.layer.borderColor = UIColor.white.cgColor
+        
     }
 
     override func didReceiveMemoryWarning() {

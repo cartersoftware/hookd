@@ -21,6 +21,10 @@
 		DB857F6920A8C93A00532F3A /* ProfilePictureWizard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB857F6820A8C93A00532F3A /* ProfilePictureWizard.swift */; };
 		DB932D7420C9B65800DBC18E /* ProfileParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB932D7320C9B65800DBC18E /* ProfileParentViewController.swift */; };
 		DBA868A720AA8CD00075BAC5 /* CLTypingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA868A620AA8CD00075BAC5 /* CLTypingLabel.swift */; };
+		DBB94F6520E52F9500640896 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB94F6420E52F9500640896 /* PreferencesViewController.swift */; };
+		DBB94F6820E533FD00640896 /* TrueFalseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB94F6720E533FD00640896 /* TrueFalseCell.swift */; };
+		DBB94F6A20E53C3500640896 /* SliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB94F6920E53C3500640896 /* SliderCell.swift */; };
+		DBB94F6E20E5A6AD00640896 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB94F6D20E5A6AD00640896 /* AccountViewController.swift */; };
 		DBC8DD9A20C9CFF50097AF83 /* ForgotUserPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC8DD9920C9CFF50097AF83 /* ForgotUserPassViewController.swift */; };
 		DBCD0988209D50C6007DE92E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCD0987209D50C6007DE92E /* AppDelegate.swift */; };
 		DBCD098A209D50C6007DE92E /* LandingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCD0989209D50C6007DE92E /* LandingPage.swift */; };
@@ -80,6 +84,10 @@
 		DB857F6820A8C93A00532F3A /* ProfilePictureWizard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePictureWizard.swift; sourceTree = "<group>"; };
 		DB932D7320C9B65800DBC18E /* ProfileParentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileParentViewController.swift; sourceTree = "<group>"; };
 		DBA868A620AA8CD00075BAC5 /* CLTypingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLTypingLabel.swift; sourceTree = "<group>"; };
+		DBB94F6420E52F9500640896 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
+		DBB94F6720E533FD00640896 /* TrueFalseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrueFalseCell.swift; sourceTree = "<group>"; };
+		DBB94F6920E53C3500640896 /* SliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderCell.swift; sourceTree = "<group>"; };
+		DBB94F6D20E5A6AD00640896 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		DBC8DD9920C9CFF50097AF83 /* ForgotUserPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotUserPassViewController.swift; sourceTree = "<group>"; };
 		DBCD0984209D50C6007DE92E /* HOOKD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HOOKD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBCD0987209D50C6007DE92E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -200,6 +208,41 @@
 			path = 3rdParty;
 			sourceTree = "<group>";
 		};
+		DBB94F6320E52F7600640896 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				DBB94F6620E533CD00640896 /* PreferencesCells */,
+				DBB94F6420E52F9500640896 /* PreferencesViewController.swift */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
+		DBB94F6620E533CD00640896 /* PreferencesCells */ = {
+			isa = PBXGroup;
+			children = (
+				DBB94F6720E533FD00640896 /* TrueFalseCell.swift */,
+				DBB94F6920E53C3500640896 /* SliderCell.swift */,
+			);
+			path = PreferencesCells;
+			sourceTree = "<group>";
+		};
+		DBB94F6B20E59C6200640896 /* HookdHome */ = {
+			isa = PBXGroup;
+			children = (
+				DBE7CA52209EC3CE00F28396 /* MatchCell.swift */,
+				DBE7CA49209D979100F28396 /* HookdHome.swift */,
+			);
+			path = HookdHome;
+			sourceTree = "<group>";
+		};
+		DBB94F6C20E5A69900640896 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				DBB94F6D20E5A6AD00640896 /* AccountViewController.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
 		DBCD097B209D50C6007DE92E = {
 			isa = PBXGroup;
 			children = (
@@ -225,16 +268,17 @@
 		DBCD0986209D50C6007DE92E /* HOOKD */ = {
 			isa = PBXGroup;
 			children = (
+				DBB94F6C20E5A69900640896 /* Account */,
+				DBB94F6B20E59C6200640896 /* HookdHome */,
+				DBB94F6320E52F7600640896 /* Preferences */,
 				DB0FEFD220ACE51A008C4458 /* Profile */,
 				DBA868A820AA8CDD0075BAC5 /* 3rdParty */,
 				DB857F6A20A8C94400532F3A /* InitialWizard */,
 				DBE7CA4D209E8C7E00F28396 /* LandingPages_SignUp_Register */,
 				DBE7CA48209D921D00F28396 /* Managers */,
 				DBCD0987209D50C6007DE92E /* AppDelegate.swift */,
-				DBE7CA49209D979100F28396 /* HookdHome.swift */,
 				DBE7CA4E209EB27E00F28396 /* AlertsViewController.swift */,
 				DBE7CA50209EB29600F28396 /* MyLikesViewController.swift */,
-				DBE7CA52209EC3CE00F28396 /* MatchCell.swift */,
 				DBD7C8DD20AF534500C50D1B /* video.mp4 */,
 				DBCD09B7209D7A06007DE92E /* Assets.xcassets */,
 				DBCD098B209D50C6007DE92E /* Main.storyboard */,
@@ -521,7 +565,11 @@
 				DB0FEFD720ACE541008C4458 /* YesNoCell.swift in Sources */,
 				DBCD0988209D50C6007DE92E /* AppDelegate.swift in Sources */,
 				DB857F6720A3E22C00532F3A /* TermsPrivacyViewController.swift in Sources */,
+				DBB94F6E20E5A6AD00640896 /* AccountViewController.swift in Sources */,
+				DBB94F6820E533FD00640896 /* TrueFalseCell.swift in Sources */,
 				DBE7CA57209ED2B100F28396 /* ForgotUsername.swift in Sources */,
+				DBB94F6A20E53C3500640896 /* SliderCell.swift in Sources */,
+				DBB94F6520E52F9500640896 /* PreferencesViewController.swift in Sources */,
 				DBE7CA4F209EB27E00F28396 /* AlertsViewController.swift in Sources */,
 				DB857F6920A8C93A00532F3A /* ProfilePictureWizard.swift in Sources */,
 				DBE7CA51209EB29600F28396 /* MyLikesViewController.swift in Sources */,
