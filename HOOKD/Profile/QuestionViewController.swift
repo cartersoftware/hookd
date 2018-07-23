@@ -19,7 +19,6 @@ class QuestionViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         super.viewDidLoad()
         
         answer.delegate = self
